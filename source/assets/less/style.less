@@ -1,0 +1,261 @@
+// Core variables and mixins
+@import "variables.less";
+@import "mixins.less";
+
+// Reset
+@import "normalize.less";
+@import "print.less";
+
+// Core CSS
+@import "scaffolding.less";
+@import "type.less";
+@import "code.less";
+@import "grid.less";
+@import "tables.less";
+@import "forms.less";
+
+
+// Components
+/*@import "component-animations.less";
+@import "glyphicons.less";
+@import "dropdowns.less";
+@import "button-groups.less";
+@import "input-groups.less";
+@import "navs.less";
+@import "navbar.less";
+@import "breadcrumbs.less";
+@import "pagination.less";
+@import "pager.less";
+@import "labels.less";
+@import "badges.less";
+@import "jumbotron.less";
+@import "thumbnails.less";
+@import "alerts.less";
+@import "progress-bars.less";
+@import "media.less";
+@import "list-group.less";
+@import "panels.less";
+@import "wells.less";
+@import "close.less";
+
+// Components w/ JavaScript
+@import "modals.less";
+@import "tooltip.less";
+@import "popovers.less";
+@import "carousel.less"; */
+
+// Utility classes
+@import "utilities.less";
+@import "responsive-utilities.less";
+
+// OnePage Scroll
+@import "onepage-scroll";
+
+// Globals
+// -------------------------------
+
+// Body Styling
+body {
+    font-size: 18px;
+    text-transform: uppercase;
+
+    @media ( min-width: @screen-md ) {
+        font-size: 25px;
+    }
+}
+
+// Links
+a, a:hover, a:active, a:focus {
+    color: @white;
+    text-decoration: none;
+}
+
+a.lined {
+
+    &:before {
+        background: @white;
+        content: "";
+        display: block;
+        height: 2px;
+        position: absolute;
+            top: 100%;
+            left: 0;
+        visibility: hidden;
+        width: 100%;
+    }
+
+    &:hover, &:active, &:focus {
+        &:before {
+            visibility: visible;
+        }
+    }
+
+}
+
+// The Border around the whole page
+.border-body {
+    @media ( min-width: @screen-md ) {
+        background: none;
+        height: 100%;
+        outline: 15px solid @white;
+        outline-offset: -15px;
+        pointer-events: none;
+        position: fixed;
+            left: 0;
+            top: 0px;
+        z-index: 100;
+        width: 100%;
+    }
+}
+
+// Buttons
+.btn {
+    border: 2px solid @white;
+    color: @white;
+    display: inline-block;
+    font-weight: 700;
+    padding: 8px 15px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    transition: color .3s;
+    z-index: 2;
+
+    &:after {
+        content: "";
+        background: @white;
+        border: 2px solid @white;
+        display: block;
+        height: 100%;
+        position: absolute;
+            top: 0;
+            left: -100%;
+        transition: left .3s;
+        width: 100%;
+        z-index: -1;
+    }
+
+    &:hover, &:active, &:focus {
+        color: @black;
+        text-decoration: none;
+        &:after {
+            left: 0;
+        }
+    }
+}
+
+// Menu-Trigger
+.menu-trigger {
+    font-size: 25px;
+    height: 55px;
+    position: fixed;
+        top: 30px;
+        left: -2px;
+    z-index: 1000;
+    padding-left: 56px;
+
+    @media (min-width: @screen-md) {
+        top: 50px;
+        left: 12px;
+        padding-left: 70px;
+    }
+
+    &:hover div {
+        border-color: @black;
+        &:before, &:after {
+            background: @black;
+        }
+    }
+
+    div {
+        border-top: 5px solid @white;
+        display: inline-block;
+        height: 30px;
+        position: absolute;
+            top: 11px;
+            left: 15px;
+        transition: border-color .3s;
+        width: 40px;
+
+        &:before, &:after {
+            background: @white;
+            content: "";
+            display: block;
+            height: 5px;
+            position: absolute;
+                left: 0;
+            transition: background .3s;
+            width: 100%;
+        }
+
+        &:before {
+            top: 7px;
+        }
+
+        &:after {
+            top: 19px;
+        }
+
+    }
+
+}
+
+
+// Pagination of the Onepage-Plugin
+.onepage-pagination {
+    right: 45px;
+    li a:before {
+        visibility: visible;
+        background: @white;
+    }
+    li a.active:before {
+        border-color: @white;
+    }
+}
+
+// General styles for all "pages"
+section {
+    background: @gray-dark;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto !important;
+    padding: 35px 0;
+    text-align: center;
+
+    @media( min-width: @screen-md ) {
+        padding: 80px 0;
+        height: 100% !important;
+    }
+
+    // Backgrounds of the Pages
+    &#home {
+        background-image: url(../img/bg-home.jpg);
+    }
+
+    &#audio {
+        background-image: url(../img/bg-audio.jpg);
+    }
+
+}
+
+// General styles for all contents
+.inner {
+    @media ( min-width: @screen-md ) {
+        position: absolute;
+            left: 50%;
+            top: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    em {
+        font-style: normal;
+        font-weight: 700;
+    }
+
+}
+
+// Emphasized Content
+
+
+@import "page-home";
