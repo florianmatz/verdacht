@@ -2,8 +2,8 @@ require.config({
 
     paths: {
         jquery: '../libs/jquery/jquery',
-        onepageScroll: '../libs/onepage-scroll/jquery.onepage-scroll'
-
+        onepageScroll: '../libs/onepage-scroll/jquery.onepage-scroll',
+        image: '../libs/requirejs-plugins/src/image'
     },
 
     shim: {
@@ -18,5 +18,6 @@ require.config({
 
 require(['jquery','init'], function ($,init) {
     'use strict';
+    $('html').removeClass('no-js');
     $(init);
 });

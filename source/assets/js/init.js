@@ -1,14 +1,15 @@
 define([
   'pageScroller',
-  ], function(PageScroller){
+  'backgroundLoader'
+  ], function(PageScroller, BackgroundLoader){
 
     var init = function(){
 
-      var pageScroller = new PageScroller();
+      var pageScroller     = new PageScroller(),
+          backgroundLoader = new BackgroundLoader();
 
     };
 
     return init;
-
 
 });
