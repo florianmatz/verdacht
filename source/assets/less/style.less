@@ -22,6 +22,13 @@
 // Iconfont
 @import "iconfont.less";
 
+// Loader Animation
+@import "loader";
+
+// Navigation
+@import "navigation";
+
+
 // Globals
 // -------------------------------
 
@@ -96,17 +103,19 @@ a.lined {
 
 // The Border around the whole page
 .border-body {
+    pointer-events: none;
+    background: none;
+    height: 100%;
+    outline: 15px solid @white;
+    outline-offset: -15px;
+    display: none;
+    position: fixed;
+        left: 0;
+        top: 0px;
+    z-index: 1000;
+    width: 100%;
     @media ( min-width: @screen-desktop ) {
-        background: none;
-        height: 100%;
-        outline: 15px solid @white;
-        outline-offset: -15px;
-        pointer-events: none;
-        position: fixed;
-            left: 0;
-            top: 0px;
-        z-index: 1000;
-        width: 100%;
+       display: block;
     }
 }
 
@@ -156,124 +165,6 @@ a.lined {
 
 }
 
-// Menu-Trigger
-.menu-trigger {
-    font-size: 25px;
-    height: 55px;
-    position: fixed;
-        top: 30px;
-        left: -2px;
-    z-index: 1000;
-    padding-left: 56px;
-
-    @media (min-width: @screen-desktop) {
-        top: 50px;
-        left: 12px;
-        padding-left: 70px;
-    }
-
-    &:hover div {
-        border-color: @black;
-        &:before, &:after {
-            background: @black;
-        }
-    }
-
-    div {
-        border-top: 5px solid @white;
-        display: inline-block;
-        height: 30px;
-        position: absolute;
-            top: 11px;
-            left: 15px;
-        transition: border-color .3s;
-        width: 40px;
-
-        &:before, &:after {
-            background: @white;
-            content: "";
-            display: block;
-            height: 5px;
-            position: absolute;
-                left: 0;
-            transition: background .3s;
-            width: 100%;
-        }
-
-        &:before {
-            top: 7px;
-        }
-
-        &:after {
-            top: 19px;
-        }
-
-    }
-
-}
-
-nav {
-    background: @gray-darker;
-    position: absolute;
-        top: 0;
-        left: 0;
-    width: 300px;
-    height: 100%;
-    z-index: 800;
-
-    @media (min-width: @screen-desktop) {
-        width: 350px;
-    }
-
-    ul {
-        margin-top: 150px;
-    }
-
-    li {
-        font-weight: 700;
-        border-top: 1px solid @gray-dark;
-
-        a {
-            display: block;
-            font-size: 25px;
-            padding: 10px 0 10px 15px;
-            position: relative;
-            transition: color .3s;
-            z-index: 2;
-
-            &:before {
-                background: @white;
-                content: "";
-                display: block;
-                height: 100%;
-                position: absolute;
-                    left: -100%;
-                    top: 0;
-                transition: left .4s;
-                width: 100%;
-                z-index: -1;
-            }
-
-            &:hover, &:active, &:focus {
-                color: @black;
-                &:before {
-                    left: 0;
-                }
-            }
-
-            @media (min-width: @screen-desktop) {
-                padding-left: 84px;
-            }
-
-        }
-
-        &:first-child {
-            border-top: none;
-        }
-    }
-
-}
-
 
 // Pagination of the Onepage-Plugin
 .onepage-pagination {
@@ -310,124 +201,8 @@ nav {
 
 }
 
+// Page Scaffolding
+@import "page-scaffolding";
 
-
-// General styles for all "pages" and their particular backgrounds
-section {
-    background: @gray-dark;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: auto !important;
-    padding: 30px 0;
-    text-align: center;
-
-    @media( min-width: @screen-desktop ) {
-        padding: 80px 0;
-        height: 100% !important;
-
-        .no-js & {
-            padding: 50px 0;
-        }
-
-    }
-
-    .no-js & {
-        height: auto !important;
-
-        // Backgrounds without distinctive loading
-        &#home {
-            background-image: url(../img/bg-home-phone.jpg);
-
-            @media ( min-width: @screen-tablet) {
-                 background-image: url(../img/bg-home-tablet.jpg);
-            }
-
-            @media ( min-width: @screen-desktop) {
-                 background-image: url(../img/bg-home-desktop.jpg);
-            }
-
-            @media ( min-width: @screen-lg-desktop) {
-                 background-image: url(../img/bg-home-lg-desktop.jpg);
-            }
-
-        }
-
-        &#audio {
-            background-image: url(../img/bg-audio-phone.jpg);
-
-            @media ( min-width: @screen-tablet) {
-                 background-image: url(../img/bg-audio-tablet.jpg);
-            }
-
-            @media ( min-width: @screen-desktop) {
-                 background-image: url(../img/bg-audio-desktop.jpg);
-            }
-
-            @media ( min-width: @screen-lg-desktop) {
-                 background-image: url(../img/bg-audio-lg-desktop.jpg);
-            }
-        }
-
-        &#info {
-            background-image: url(../img/bg-info-phone.jpg);
-
-            @media ( min-width: @screen-tablet) {
-                 background-image: url(../img/bg-info-tablet.jpg);
-            }
-
-            @media ( min-width: @screen-desktop) {
-                 background-image: url(../img/bg-info-desktop.jpg);
-            }
-
-            @media ( min-width: @screen-lg-desktop) {
-                 background-image: url(../img/bg-info-lg-desktop.jpg);
-            }
-        }
-
-        &#contact {
-            background-image: url(../img/bg-contact-phone.jpg);
-
-            @media ( min-width: @screen-tablet) {
-                 background-image: url(../img/bg-contact-tablet.jpg);
-            }
-
-            @media ( min-width: @screen-desktop) {
-                 background-image: url(../img/bg-contact-desktop.jpg);
-            }
-
-            @media ( min-width: @screen-lg-desktop) {
-                 background-image: url(../img/bg-contact-lg-desktop.jpg);
-            }
-        }
-
-    }
-
-}
-
-// General styles for all contents
-.inner {
-    @media ( min-width: @screen-desktop ) {
-        position: absolute;
-            left: 50%;
-            top: 50%;
-        transform: translate(-50%,-50%);
-
-        .no-js & {
-            position: static;
-                transform: translate(0,0);
-        }
-
-    }
-
-    em {
-        font-style: normal;
-        font-weight: 700;
-    }
-
-}
-
-// Emphasized Content
-
-
+//  Single Pages
 @import "page-home";

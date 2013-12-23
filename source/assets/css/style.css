@@ -2940,6 +2940,240 @@ you can use the generic selector below, but it's slower:
   content: "\e002";
 }
 
+.loader {
+  background-color: #ffffff;
+  height: 30px;
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  opacity: 0;
+  width: 30px;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+  z-index: 1000;
+  -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+  animation: rotateplane 1.2s infinite ease-in-out;
+}
+
+.loader.show {
+  opacity: 1;
+}
+
+@-webkit-keyframes rotateplane {
+  0% {
+    -webkit-transform: perspective(120px);
+  }
+
+  50% {
+    -webkit-transform: perspective(120px) rotateY(180deg);
+  }
+
+  100% {
+    -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg);
+  }
+}
+
+@keyframes rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+#nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  z-index: 800;
+}
+
+@media (min-width: 992px) {
+  #nav {
+    width: 350px;
+  }
+}
+
+#nav:not(:target) ul,
+#nav.reset ul {
+  -webkit-transform: translate(-100%, 0);
+  transform: translate(-100%, 0);
+}
+
+#nav:not(:target) .menu-trigger.close,
+#nav.reset .menu-trigger.close {
+  display: none;
+}
+
+#nav:not(:target) .menu-trigger.open,
+#nav.reset .menu-trigger.open {
+  display: block;
+}
+
+#nav .menu-trigger {
+  font-size: 25px;
+  height: 55px;
+  position: fixed;
+  top: 30px;
+  left: -2px;
+  z-index: 1000;
+  padding-left: 56px;
+}
+
+@media (min-width: 992px) {
+  #nav .menu-trigger {
+    top: 50px;
+    left: 12px;
+    padding-left: 70px;
+  }
+}
+
+#nav .menu-trigger:hover div {
+  border-color: #000000;
+}
+
+#nav .menu-trigger:hover div:before,
+#nav .menu-trigger:hover div:after {
+  background: #000000;
+}
+
+#nav .menu-trigger div {
+  border-top: 5px solid #ffffff;
+  display: inline-block;
+  height: 30px;
+  position: absolute;
+  top: 11px;
+  left: 15px;
+  -webkit-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+  width: 40px;
+}
+
+#nav .menu-trigger div:before,
+#nav .menu-trigger div:after {
+  background: #ffffff;
+  content: "";
+  display: block;
+  height: 5px;
+  position: absolute;
+  left: 0;
+  -webkit-transition: background .3s;
+  transition: background .3s;
+  width: 100%;
+}
+
+#nav .menu-trigger div:before {
+  top: 7px;
+}
+
+#nav .menu-trigger div:after {
+  top: 19px;
+}
+
+#nav .menu-trigger.open {
+  display: none;
+}
+
+#nav .menu-trigger.close {
+  display: block;
+}
+
+#nav .menu-trigger.close div {
+  border-color: transparent;
+}
+
+#nav .menu-trigger.close div:before {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#nav .menu-trigger.close div:after {
+  top: 7px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#nav ul {
+  background: #0e0e0e;
+  height: 100%;
+  padding-top: 150px;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+  -webkit-transition: -webkit-transform .3s;
+  transition: transform .3s;
+}
+
+#nav li {
+  font-weight: 700;
+  border-top: 1px solid #333333;
+}
+
+#nav li a {
+  display: block;
+  font-size: 25px;
+  padding: 10px 0 10px 15px;
+  position: relative;
+  -webkit-transition: color 0.3s, padding-left 0.3s;
+  transition: color 0.3s, padding-left 0.3s;
+  z-index: 2;
+}
+
+#nav li a:before {
+  background: #ffffff;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  left: -100%;
+  top: 0;
+  -webkit-transition: left .4s;
+  transition: left .4s;
+  width: 100%;
+  z-index: -1;
+}
+
+#nav li a:hover,
+#nav li a:active,
+#nav li a:focus {
+  color: #000000;
+  padding-left: 30px;
+}
+
+@media (min-width: 992px) {
+  #nav li a:hover,
+  #nav li a:active,
+  #nav li a:focus {
+    padding-left: 99px;
+  }
+}
+
+#nav li a:hover:before,
+#nav li a:active:before,
+#nav li a:focus:before {
+  left: 0;
+}
+
+@media (min-width: 992px) {
+  #nav li a {
+    padding-left: 84px;
+  }
+}
+
+#nav li:first-child {
+  border-top: none;
+}
+
 .no-js,
 .no-js body {
   overflow: visible;
@@ -3009,18 +3243,23 @@ a.lined:focus:before {
   visibility: visible;
 }
 
+.border-body {
+  pointer-events: none;
+  background: none;
+  height: 100%;
+  outline: 15px solid #ffffff;
+  outline-offset: -15px;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0px;
+  z-index: 1000;
+  width: 100%;
+}
+
 @media (min-width: 992px) {
   .border-body {
-    background: none;
-    height: 100%;
-    outline: 15px solid #ffffff;
-    outline-offset: -15px;
-    pointer-events: none;
-    position: fixed;
-    left: 0;
-    top: 0px;
-    z-index: 1000;
-    width: 100%;
+    display: block;
   }
 }
 
@@ -3073,137 +3312,6 @@ a.lined:focus:before {
 
 .btn span:before {
   font-weight: normal;
-}
-
-.menu-trigger {
-  font-size: 25px;
-  height: 55px;
-  position: fixed;
-  top: 30px;
-  left: -2px;
-  z-index: 1000;
-  padding-left: 56px;
-}
-
-@media (min-width: 992px) {
-  .menu-trigger {
-    top: 50px;
-    left: 12px;
-    padding-left: 70px;
-  }
-}
-
-.menu-trigger:hover div {
-  border-color: #000000;
-}
-
-.menu-trigger:hover div:before,
-.menu-trigger:hover div:after {
-  background: #000000;
-}
-
-.menu-trigger div {
-  border-top: 5px solid #ffffff;
-  display: inline-block;
-  height: 30px;
-  position: absolute;
-  top: 11px;
-  left: 15px;
-  -webkit-transition: border-color 0.3s;
-  transition: border-color 0.3s;
-  width: 40px;
-}
-
-.menu-trigger div:before,
-.menu-trigger div:after {
-  background: #ffffff;
-  content: "";
-  display: block;
-  height: 5px;
-  position: absolute;
-  left: 0;
-  -webkit-transition: background .3s;
-  transition: background .3s;
-  width: 100%;
-}
-
-.menu-trigger div:before {
-  top: 7px;
-}
-
-.menu-trigger div:after {
-  top: 19px;
-}
-
-nav {
-  background: #0e0e0e;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 100%;
-  z-index: 800;
-}
-
-@media (min-width: 992px) {
-  nav {
-    width: 350px;
-  }
-}
-
-nav ul {
-  margin-top: 150px;
-}
-
-nav li {
-  font-weight: 700;
-  border-top: 1px solid #333333;
-}
-
-nav li a {
-  display: block;
-  font-size: 25px;
-  padding: 10px 0 10px 15px;
-  position: relative;
-  -webkit-transition: color .3s;
-  transition: color .3s;
-  z-index: 2;
-}
-
-nav li a:before {
-  background: #ffffff;
-  content: "";
-  display: block;
-  height: 100%;
-  position: absolute;
-  left: -100%;
-  top: 0;
-  -webkit-transition: left .4s;
-  transition: left .4s;
-  width: 100%;
-  z-index: -1;
-}
-
-nav li a:hover,
-nav li a:active,
-nav li a:focus {
-  color: #000000;
-}
-
-nav li a:hover:before,
-nav li a:active:before,
-nav li a:focus:before {
-  left: 0;
-}
-
-@media (min-width: 992px) {
-  nav li a {
-    padding-left: 84px;
-  }
-}
-
-nav li:first-child {
-  border-top: none;
 }
 
 .onepage-pagination {

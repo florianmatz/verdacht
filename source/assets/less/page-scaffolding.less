@@ -1,0 +1,114 @@
+// General styles for all "pages" and their particular backgrounds
+section {
+    background: @gray-dark;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto !important;
+    padding: 30px 0;
+    text-align: center;
+
+    @media( min-width: @screen-desktop ) {
+        padding: 80px 0;
+        height: 100% !important;
+
+        .no-js & {
+            padding: 50px 0;
+        }
+
+    }
+
+    .no-js & {
+        height: auto !important;
+
+        // Backgrounds without distinctive loading
+        &#home {
+            background-image: url(../img/bg-home-phone.jpg);
+
+            @media ( min-width: @screen-tablet) {
+                 background-image: url(../img/bg-home-tablet.jpg);
+            }
+
+            @media ( min-width: @screen-desktop) {
+                 background-image: url(../img/bg-home-desktop.jpg);
+            }
+
+            @media ( min-width: @screen-lg-desktop) {
+                 background-image: url(../img/bg-home-lg-desktop.jpg);
+            }
+
+        }
+
+        &#audio {
+            background-image: url(../img/bg-audio-phone.jpg);
+
+            @media ( min-width: @screen-tablet) {
+                 background-image: url(../img/bg-audio-tablet.jpg);
+            }
+
+            @media ( min-width: @screen-desktop) {
+                 background-image: url(../img/bg-audio-desktop.jpg);
+            }
+
+            @media ( min-width: @screen-lg-desktop) {
+                 background-image: url(../img/bg-audio-lg-desktop.jpg);
+            }
+        }
+
+        &#info {
+            background-image: url(../img/bg-info-phone.jpg);
+
+            @media ( min-width: @screen-tablet) {
+                 background-image: url(../img/bg-info-tablet.jpg);
+            }
+
+            @media ( min-width: @screen-desktop) {
+                 background-image: url(../img/bg-info-desktop.jpg);
+            }
+
+            @media ( min-width: @screen-lg-desktop) {
+                 background-image: url(../img/bg-info-lg-desktop.jpg);
+            }
+        }
+
+        &#contact {
+            background-image: url(../img/bg-contact-phone.jpg);
+
+            @media ( min-width: @screen-tablet) {
+                 background-image: url(../img/bg-contact-tablet.jpg);
+            }
+
+            @media ( min-width: @screen-desktop) {
+                 background-image: url(../img/bg-contact-desktop.jpg);
+            }
+
+            @media ( min-width: @screen-lg-desktop) {
+                 background-image: url(../img/bg-contact-lg-desktop.jpg);
+            }
+        }
+
+    }
+
+}
+
+// General styles for all contents
+.inner {
+    @media ( min-width: @screen-desktop ) {
+        position: absolute;
+            left: 50%;
+            top: 50%;
+        transform: translate(-50%,-50%);
+
+        .no-js & {
+            position: static;
+                transform: translate(0,0);
+        }
+
+    }
+
+    em {
+        font-style: normal;
+        font-weight: 700;
+    }
+
+}

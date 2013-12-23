@@ -1,12 +1,14 @@
 define([
   'pageScroller',
-  'backgroundLoader'
-  ], function(PageScroller, BackgroundLoader){
+  'backgroundLoader',
+  'navigationHandler'
+  ], function(PageScroller, BackgroundLoader, NavigationHandler){
 
     var init = function(){
 
-      var pageScroller     = new PageScroller(),
-          backgroundLoader = new BackgroundLoader();
+      var pageScroller      = new PageScroller(),
+          backgroundLoader  = new BackgroundLoader(),
+          navigationHandler = new NavigationHandler();
 
     };
 

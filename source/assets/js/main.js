@@ -1,5 +1,4 @@
 require.config({
-
     paths: {
         jquery: '../libs/jquery/jquery',
         onepageScroll: '../libs/onepage-scroll/jquery.onepage-scroll',
@@ -12,7 +11,6 @@ require.config({
            exports: 'onepageScroll'
        }
     }
-
 });
 
 

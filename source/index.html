@@ -6,6 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="description" content="----- FEHLT -----" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script>
+            window.location.hash = '';
+            document.documentElement.className =
+                   document.documentElement.className.replace('no-js','');
+        </script>
         <script data-main="assets/js/main" src="assets/libs/requirejs/require.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="assets/css/style.css">
@@ -14,18 +19,26 @@
 
         <div class="border-body"></div>
 
-        <a href="#" class="menu-trigger btn">
-            <div></div>
-            <span class="hidden-xs hidden-sm">Menü</span>
-        </a>
+        <div class="loader"></div>
 
-        <nav>
+        <nav id="nav">
+
+            <a href="#nav" class="menu-trigger open btn">
+                <div></div>
+                <span class="hidden-xs hidden-sm">Menü</span>
+            </a>
+
+            <a href="#" class="menu-trigger close btn">
+                <div></div>
+                <span class="hidden-xs hidden-sm">Menü</span>
+            </a>
+
             <ul class="list-unstyled">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#audio">Hörspiel</a></li>
-                <li><a href="#info">Information</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <li><a href="#info">Impressum</a></li>
+                <li><a href="#home" data-slide="1">Home</a></li>
+                <li><a href="#audio" data-slide="2">Hörspiel</a></li>
+                <li><a href="#info" data-slide="3">Information</a></li>
+                <li><a href="#contact" data-slide="4">Kontakt</a></li>
+                <li><a href="#info" data-slide="4">Impressum</a></li>
             </ul>
         </nav>
 
