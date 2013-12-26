@@ -10,7 +10,6 @@
 @import "scaffolding.less";
 @import "type.less";
 @import "grid.less";
-@import "forms.less";
 
 // Utility classes
 @import "utilities.less";
@@ -62,6 +61,9 @@ body:before {
 
 }
 
+body, html {
+    height: 100%;
+}
 
 // Body Styling
 body {
@@ -98,7 +100,20 @@ a.lined {
             visibility: visible;
         }
     }
+}
 
+// Headlines
+h1, h2, h3 {
+    font-weight: 700;
+    margin: 15px 0 10px;
+}
+
+// Seperators
+hr {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    height: 1px;
+    margin: 25px 0;
 }
 
 // The Border around the whole page
@@ -206,3 +221,5 @@ a.lined {
 
 //  Single Pages
 @import "page-home";
+@import "page-info";
+@import "page-contact";

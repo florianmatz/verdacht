@@ -28,7 +28,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-headset, .icon-compass, .icon-office {
+.icon-headset, .icon-compass, .icon-office, .icon-facebook, .icon-twitter, .icon-mail {
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -47,4 +47,13 @@ you can use the generic selector below, but it's slower:
 }
 .icon-office:before {
     content: "\e002";
+}
+.icon-facebook:before {
+    content: "\e003";
+}
+.icon-twitter:before {
+    content: "\e004";
+}
+.icon-mail:before {
+    content: "\e005";
 }

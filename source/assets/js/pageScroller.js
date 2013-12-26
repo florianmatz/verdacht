@@ -1,13 +1,16 @@
 define([
   'jquery',
-  'onepageScroll'
-  ], function($, PageScroller){
+  'onepageScroll',
+  'underscore'
+  ], function($, PageScroller,_){
 
     PageScroller = function() {
+
       this.$el = $('.main');
       this.$logoFlag = $('.logo-flag');
       this.$window = $(window);
       this.$body = $('body');
+      this.$sections = $('.main').find('section');
       this.init();
     };
 
@@ -22,12 +25,18 @@ define([
         afterMove: $.proxy(this.showLogoFlag, this)
       });
       this.addListeners();
+      this.watchResize();
     };
 
     PageScroller.prototype.addListeners = function() {
       var self = this;
+      this.$window.on('resize', _.throttle($.proxy(this.watchResize, this), 150 ) );
       $(document).on('mousewheel DOMMouseScroll', $.proxy( this.onScroll, this ));
       $(document).on('keydown', $.proxy( this.onKeydown, this));
+      $('.listen').on('click', $.proxy(function(evt){
+        evt.preventDefault();
+        this.$el.moveTo(2);
+      }, this ) );
     };
 
     PageScroller.prototype.onScroll = function(evt) {
@@ -50,6 +59,31 @@ define([
       if($sectionActive.index() > 0) {
         this.$logoFlag.addClass('show');
       }
+    };
+
+    PageScroller.prototype.watchResize = function() {
+
+      var self         = this,
+          winHeight    = this.$window.height(),
+          neededResize = null;
+
+      $.each(this.$sections, function(index, item) {
+        var $item = $(item);
+        if($item.find('.container').height() > winHeight) {
+          neededResize = true;
+          return;
+        }
+
+      });
+
+      if(neededResize) {
+        this.$el.responsive();
+        this.$sections.addClass('neededResize');
+      }else {
+        this.$el.unresponsive();
+        this.$sections.removeClass('neededResize');
+      }
+
     };
 
     return PageScroller;

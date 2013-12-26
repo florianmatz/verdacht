@@ -2,13 +2,17 @@ require.config({
     paths: {
         jquery: '../libs/jquery/jquery',
         onepageScroll: '../libs/onepage-scroll/jquery.onepage-scroll',
-        image: '../libs/requirejs-plugins/src/image'
+        image: '../libs/requirejs-plugins/src/image',
+        underscore: '../libs/underscore/underscore'
     },
 
     shim: {
        'onepageScroll': {
-           deps: ['jquery'],
-           exports: 'onepageScroll'
+          deps: ['jquery'],
+          exports: 'onepageScroll'
+       },
+       'underscore': {
+          exports: '_'
        }
     }
 });

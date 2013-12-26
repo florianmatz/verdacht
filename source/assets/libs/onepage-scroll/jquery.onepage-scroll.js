@@ -172,7 +172,7 @@
         history.pushState( {}, document.title, href );
       }
       el.transformPage(settings, pos, index);
-    }
+    };
 
     $.fn.moveTo = function(page_index) {
       current = $(settings.sectionContainer + ".active")
@@ -189,10 +189,22 @@
         el.transformPage(settings, pos, page_index);
         if (settings.updateURL == false) return false;
       }
-    }
+    };
 
-    function responsive() {
-      if ($(window).width() < settings.responsiveFallback) {
+    // Added
+    // ----------------------------
+    $.fn.responsive = function() {
+      responsive(true);
+    };
+
+    $.fn.unresponsive = function() {
+      responsive(false);
+    };
+
+    // ---------------------------
+
+    function responsive(setManually) {
+      if ($(window).width() < settings.responsiveFallback || setManually) {
         $("body").addClass("disabled-onepage-scroll");
         $(document).unbind('mousewheel DOMMouseScroll');
         el.swipeEvents().unbind("swipeDown swipeUp");
@@ -201,7 +213,6 @@
           $("body").removeClass("disabled-onepage-scroll");
           $("html, body, .wrapper").animate({ scrollTop: 0 }, "fast");
         }
-
 
         el.swipeEvents().bind("swipeDown",  function(event){
           if (!$("body").hasClass("disabled-onepage-scroll")) event.preventDefault();

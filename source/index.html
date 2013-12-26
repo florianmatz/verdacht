@@ -8,8 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script>
             window.location.hash = '';
-            document.documentElement.className =
-                   document.documentElement.className.replace('no-js','');
+            document.documentElement.className = document.documentElement.className.replace('no-js','');
         </script>
         <script data-main="assets/js/main" src="assets/libs/requirejs/require.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
@@ -17,7 +16,7 @@
     </head>
     <body>
 
-        <div class="border-body"></div>
+        <!-- <div class="border-body"></div> -->
 
         <div class="loader"></div>
 
@@ -38,11 +37,11 @@
                 <li><a href="#audio" data-slide="2">Hörspiel</a></li>
                 <li><a href="#info" data-slide="3">Information</a></li>
                 <li><a href="#contact" data-slide="4">Kontakt</a></li>
-                <li><a href="#info" data-slide="4">Impressum</a></li>
+                <li><a href="#contact" data-slide="4">Impressum</a></li>
             </ul>
         </nav>
 
-        <div class="logo-flag hidden-xs hidden-sm">
+        <div class="logo-flag hidden-xs hidden-sm hidden-md">
             <img src="assets/img/logo.svg" alt="V)ERDACHT - ein binaurales, interaktives Hörspiel">
         </div>
 
@@ -58,7 +57,7 @@
                         </span>
                     </p>
 
-                    <a href="#audio" class="btn">
+                    <a href="#audio" class="btn listen">
                        <span class="icon-headset"> Jetzt anhören</span>
                     </a>
 
@@ -70,11 +69,74 @@
             </section>
 
             <section id="info">
-                 <h1>Info</h1>
+                 <div class="inner container">
+                    <h1>Information</h1>
+                    <p>
+                        <em>Verdacht</em> ist ein binaurales, interaktives Hörspiel welches im Rahmen einer studentischen Produktion an der Hochschule der Medien Stuttgart entstanden ist. Lorem ipsum.
+                    </p>
+                    <hr/>
+                    <h1>
+                        Team
+                    </h1>
+                    <ul class="list-unstyled">
+                        <li>Ajan Hannemann</li>
+                        <li>Dominik Litfin</li>
+                        <li>Sybille Neumeier</li>
+                        <li>Markus Rebholz</li>
+                        <li>Stephan Reinkowski</li>
+                    </ul>
+                    <hr/>
+                    <h1>Sponsoren</h1>
+                    <ul class="list-unstyled logoboard">
+                        <li>
+                            <a href="http://www.swr.de" class="swr">SWR</a>
+                        </li>
+                        <li>
+                            <a href="http://www.lawo.de" class="lawo">Lawo</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dpa-microphones.de" class="dpa">DPA</a>
+                        </li>
+                        <li>
+                            <a href="http://www.beyer-dynamics.de" class="beyer">Beyer Dynamic</a>
+                        </li>
+                        <li >
+                            <a href="http://www.lbbw.de" class="lbbw">LBBW</a>
+                        </li>
+                    </ul>
+                </div>
             </section>
 
             <section id="contact">
-                 <h1>Contact</h1>
+                <div class="inner container">
+                    <h1>Kontakt & Impressum</h1>
+
+                        <div class="col-md-6 contact">
+                            <h2>Kontakt</h2>
+                            <a href="#" class="icon-mail"></a>
+                            <a href="#" class="icon-facebook"></a>
+                            <a href="#" class="icon-twitter"></a>
+                        </div>
+                        <hr class="visible-xs visible-sm"/>
+                        <div class="col-md-6 imprint">
+                            <h2>Impressum</h2>
+                            <h3>Herausgeber</h3>
+                            <ul class="list-unstyled">
+                                <li>Ajan Hannemann</li>
+                                <li>Musterstraße 10</li>
+                                <li>Musterstadt </li>
+                            </ul>
+                            <h3>Inhaltlich Verantwortlich</h3>
+                            <p>Ajan Hannemann, Dominik Litfin</p>
+                            <h3>E-Mail</h3>
+                            <a href="mailto:info@verdacht.de">info@verdacht.de</a>
+                            <a href="#" class="privacy">Informationen zum Datenschutz</a>
+                        </div>
+
+
+                </div>
+
+
             </section>
 
         </div>

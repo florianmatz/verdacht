@@ -15,7 +15,17 @@ section {
         .no-js & {
             padding: 50px 0;
         }
+    }
 
+    &.neededResize {
+        .inner, .container {
+            position: static;
+            transform: translate(0,0);
+        }
+        height: auto !important;
+        @media( min-width: @screen-desktop ) {
+            height: auto !important;
+        }
     }
 
     .no-js & {

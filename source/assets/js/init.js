@@ -9,7 +9,6 @@ define([
       var pageScroller      = new PageScroller(),
           backgroundLoader  = new BackgroundLoader(),
           navigationHandler = new NavigationHandler();
-
     };
 
     return init;

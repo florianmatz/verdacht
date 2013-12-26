@@ -1,0 +1,72 @@
+#info {
+
+    li {
+        margin-bottom: 8px;
+    }
+
+    .logoboard {
+
+        .clearfix();
+        display: inline-block;
+        margin: 20px auto 0;
+        width: 100%;
+
+        @media (min-width: @screen-desktop) {
+            width: auto;
+        }
+
+        li {
+            width: 100%;
+            margin-bottom: 30px;
+            position: relative;
+
+            @media (min-width: @screen-desktop) {
+                float: left;
+                margin-right: 45px;
+                width: auto;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+
+        }
+
+        a {
+            background-image: url(../img/sponsors.png);
+            background-repeat: no-repeat;
+            display: block;
+            height: 67px;
+            margin: 0 auto;
+            .text-hide;
+
+            &.swr {
+                background-position: 0 0;
+                width: 122px;
+            }
+
+            &.lawo {
+                background-position: -122px 0;
+                width: 67px;
+            }
+
+            &.dpa {
+                background-position: -189px 0;
+                width: 136px;
+            }
+
+            &.beyer {
+                background-position: -327px 0;
+                width: 186px;
+            }
+
+            &.lbbw {
+                background-position: -513px 0;
+                width: 138px;
+            }
+
+        }
+
+    }
+
+
+}

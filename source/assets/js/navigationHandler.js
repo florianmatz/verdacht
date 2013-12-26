@@ -6,6 +6,7 @@ define([
     NavigationHandler = function() {
       this.$el = $('nav');
       this.$navToggler = $('.menu-trigger');
+      this.$body = $('body');
       this.$pagination = $('.onepage-pagination').find('a');
       this.$logoFlag = $('.logo-flag');
       this.$main = $('.main');
@@ -27,18 +28,20 @@ define([
     };
 
     NavigationHandler.prototype.onNavClick = function(evt) {
-      var $target = $(evt.currentTarget),
+      var $target  = $(evt.currentTarget),
           viewport = utils.getViewport();
       evt.preventDefault();
       this.removeFlag($target);
-      if(viewport==='desktop' || viewport==='lg-desktop') {
+      if( (viewport==='desktop' || viewport==='lg-desktop') && !this.$body.hasClass('disabled-onepage-scroll') ){
         this.$main.moveTo($target.data('slide'));
-        this.$el.addClass('reset');
-        window.location.hash = '';
       }
       else {
-        window.location.hash = $target.attr('href');
+        var scrollTarget = $($target.attr('href')).offset().top;
+        // fix chrome bug!
+        $('html, body').animate({scrollTop: scrollTarget}, 1000);
       }
+      this.$el.addClass('reset');
+      window.location.hash = '';
     };
 
     NavigationHandler.prototype.removeFlag = function($target) {

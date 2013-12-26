@@ -12,14 +12,15 @@ define([
     };
 
     BackgroundLoader.prototype.load = function() {
-      var viewport = utils.getViewport(),
-          self = this,
+      var viewport    = utils.getViewport(),
+          self        = this,
           itemsLoaded = 0;
+
       this.$loader.addClass('show');
 
       $.each(this.$sections, function(index, item) {
         var $item = $(item),
-            path = self.imgPath+'bg-'+$item.attr('id')+'-'+viewport+'.jpg';
+            path  = self.imgPath+'bg-'+$item.attr('id')+'-'+viewport+'.jpg';
 
         require(['image!'+path], function (img) {
           $item.css('background-image', 'url('+path+')');

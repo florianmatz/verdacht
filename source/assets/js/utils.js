@@ -12,7 +12,7 @@ define([
               document.querySelector('body'), ':before'
             ).getPropertyValue('content');
 
-       return viewport;
+       return viewport.replace(/"/g,'');
  };
 
 
