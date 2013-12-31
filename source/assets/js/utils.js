@@ -15,6 +15,7 @@ define([
        return viewport.replace(/"/g,'');
  };
 
+ Utils.prefixedTransitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
 
  return new Utils();
 

@@ -3,6 +3,10 @@ require.config({
         jquery: '../libs/jquery/jquery',
         onepageScroll: '../libs/onepage-scroll/jquery.onepage-scroll',
         image: '../libs/requirejs-plugins/src/image',
+        text: '../libs/requirejs-text/text',
+        tpl: '../libs/requirejs-tpl/tpl',
+        json: '../libs/requirejs-plugins/src/json',
+        backbone: '../libs/backbone/backbone',
         underscore: '../libs/underscore/underscore'
     },
 
@@ -13,6 +17,10 @@ require.config({
        },
        'underscore': {
           exports: '_'
+       },
+       'backbone': {
+          deps: ['underscore', 'jquery'],
+          exports: 'Backbone'
        }
     }
 });
@@ -20,6 +28,5 @@ require.config({
 
 require(['jquery','init'], function ($,init) {
     'use strict';
-    $('html').removeClass('no-js');
     $(init);
 });

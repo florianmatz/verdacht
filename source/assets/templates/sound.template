@@ -1,0 +1,29 @@
+<h2>
+  <span>Kapitel <%= chapter %></span>
+  <%= title %>
+</h2>
+<div class="icon">
+
+</div>
+<div class="player">
+
+</div>
+<ul class="decisions list-unstyled">
+
+  <% if(typeof options != 'undefined') { _.each(options, function(option, index) { %>
+    <li>
+      <a href="#" class="btn proceed" data-next="<%= paths[index] %>">
+        <% if(typeof sms != 'undefined') { %> <span>SMS Senden</span> <% } %>
+        <%= option %>
+      </a>
+    </li>
+  <% }); } %>
+
+  <li>
+    <a href="#" class="btn replay">
+      Erneut anhören
+    </a>
+  </li>
+
+
+</ul>

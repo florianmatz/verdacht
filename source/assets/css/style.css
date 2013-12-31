@@ -3181,6 +3181,34 @@ section.neededResize .container {
   }
 }
 
+#audio .sounds {
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+#audio .sounds.fading {
+  pointer-events: none;
+  opacity: 0;
+}
+
+#audio .sounds h2 span {
+  display: block;
+  font-weight: normal;
+}
+
+#audio .sounds .decisions {
+  display: inline-block;
+}
+
+#audio .sounds .btn {
+  display: block;
+  margin-bottom: 20px;
+}
+
+#audio .sounds .btn span {
+  display: block;
+}
+
 #info li {
   margin-bottom: 8px;
 }
