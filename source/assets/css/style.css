@@ -3200,13 +3200,24 @@ section.neededResize .container {
   display: inline-block;
 }
 
+#audio .sounds .decisions li:last-child {
+  margin-top: 40px;
+}
+
 #audio .sounds .btn {
   display: block;
   margin-bottom: 20px;
 }
 
 #audio .sounds .btn span {
+  border-bottom: 2px solid #ffffff;
   display: block;
+  padding-bottom: 3px;
+  margin-bottom: 5px;
+}
+
+#audio .sounds .btn:hover span {
+  border-color: #000000;
 }
 
 #info li {

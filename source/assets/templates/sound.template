@@ -1,6 +1,6 @@
 <h2>
   <span>Kapitel <%= chapter %></span>
-  <%= title %>
+  <%= title %> | <%= name %>
 </h2>
 <div class="icon">
 
@@ -13,15 +13,18 @@
   <% if(typeof options != 'undefined') { _.each(options, function(option, index) { %>
     <li>
       <a href="#" class="btn proceed" data-next="<%= paths[index] %>">
-        <% if(typeof sms != 'undefined') { %> <span>SMS Senden</span> <% } %>
+        <% if(typeof sms != 'undefined') { var direction = sms %>
+          <span>SMS <% if(direction=='send') { %> Senden <% } else { %> Empfangen <% } %> </span>
+        <% } %>
         <%= option %>
       </a>
     </li>
   <% }); } %>
 
   <li>
-    <a href="#" class="btn replay">
-      Erneut anhören
+    <% var totalReplay = (typeof end != 'undefined') %>
+    <a href="#" class="btn <% if(totalReplay){%>total-<%}%>replay">
+      <% if(totalReplay){ %>Hörspiel<% } %> Erneut anhören
     </a>
   </li>
 

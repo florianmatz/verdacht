@@ -16,6 +16,10 @@
 
         .decisions {
             display: inline-block;
+
+            li:last-child {
+                margin-top: 40px;
+            }
         }
 
         .btn {
@@ -23,7 +27,16 @@
             margin-bottom: 20px;
 
             span {
+                border-bottom: 2px solid @white;
                 display: block;
+                padding-bottom: 3px;
+                margin-bottom: 5px;
+            }
+
+            &:hover {
+                span {
+                    border-color: @black;
+                }
             }
 
         }

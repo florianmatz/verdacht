@@ -16,7 +16,6 @@ define([
       },
 
       render: function(chapter) {
-        console.log('rendering: ', this.model);
         this.model.attributes.chapter = chapter;
         this.$el.html(template(this.model.attributes));
         return this;

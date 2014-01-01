@@ -36,6 +36,8 @@
             "name": "05-kirche",
             "title": "Dummy Titel",
             "icon": "",
+            "bitmask": "B",
+            "flag": 4,
             "options": ["Den Anwalt Walter Küster treffen", "Anderen Ort zur Entspannung aufsuchen"],
             "paths": ["07-kanzlei-a", "09-bordell-a"],
             "loop": "loop-kirche"
@@ -52,6 +54,8 @@
             "name": "07-kanzlei-a",
             "title": "Dummy Titel",
             "icon": "",
+            "bitmask": "A",
+            "flag": 4,
             "options": ["Nicht in den Wald gehen", "Mit Küster im Wald treffen"],
             "paths": ["08-kanzlei-b", "12-wald"],
             "loop": "loop-kanzlei"
@@ -61,7 +65,7 @@
             "title": "Dummy Titel",
             "icon": "",
             "options": ["Rudi, müssen uns unbedingt sehen. Morgen, 16 Uhr. Nähere Infos dann. Gruß, Klaus."],
-            "sms": true,
+            "sms": "send",
             "paths": ["15-rummel-toilette"],
             "loop": "loop-sms-1"
         },
@@ -69,15 +73,17 @@
             "name": "09-bordell-a",
             "title": "Dummy Titel",
             "icon": "",
+            "maks": "B",
+            "flag": 1,
             "options": ["Fliehen!", "Darauf einlassen..."],
-            "paths": ["10-bordell-b", "11-bordell-c"],
+            "paths": ["10-bordell-b", "11-bordell-c-kanzlei"],
             "loop": "loop-bordell"
         },
         {
             "name": "10-bordell-b",
             "title": "Dummy Titel",
             "icon": "",
-            "sms": true,
+            "sms": "receive",
             "options": ["Klaus, mein Anwalt Küster will dich um 21:00 Uhr unbedingt im Fichtenwald am Weiher treffen, er muss dir dort was zeigen. Keine Sorge, er hat mein 100%iges Vertrauen. Gruß, Dieter"],
             "paths": ["12-wald"],
             "loop": "loop-bordell"
@@ -86,6 +92,8 @@
             "name": "11-bordell-c-kanzlei",
             "title": "Dummy Titel",
             "icon": "",
+            "bitmask": "A",
+            "flag": 4,
             "options": ["Nicht in den Wald gehen", "Mit Küsen im Wald treffen"],
             "paths": ["08-kanzlei-b", "12-wald"],
             "loop": "loop-kanzlei"
@@ -94,6 +102,8 @@
             "name": "12-wald",
             "title": "Dummy Titel",
             "icon": "",
+            "bitmask": "A",
+            "flag": 2,
             "options": ["Rudi in der Öffentlichkeit treffen", "Rudi an einem ungestörten Ort treffen"],
             "paths": ["13-sms-1", "14-sms-2"],
             "loop": "loop-wald"
@@ -102,6 +112,7 @@
             "name": "13-sms-1",
             "title": "Dummy Titel",
             "icon": "",
+            "sms": "send",
             "options": ["Rudi, müssen uns unbedingt sehen. Morgen, 16Uhr. Rummelplatz. Nähere Infos dann. Gruß, Klaus."],
             "paths": ["15-rummel-toilette"],
             "loop": "loop-sms"
@@ -110,7 +121,8 @@
             "name": "14-sms-2",
             "title": "Dummy Titel",
             "icon": "",
-            "options": "Rudi, müssen uns dringend sehen. Morgen, 16Uhr. Südeingang Hauptbahnhof. Bring alle alten Dokumente unseres Chevys, die gefälschten Pässe und die Flüchtlingslisten mit. Reichert und Konsorten sind wieder da und uns auf der Spur! Gruß, Klaus.",
+            "sms": "send",
+            "options": ["Rudi, müssen uns dringend sehen. Morgen, 16Uhr. Südeingang Hauptbahnhof. Bring alle alten Dokumente unseres Chevys, die gefälschten Pässe und die Flüchtlingslisten mit. Reichert und Konsorten sind wieder da und uns auf der Spur! Gruß, Klaus."],
             "paths": ["16-toilette"],
             "loop": "loop-sms"
         },
@@ -118,6 +130,8 @@
             "name": "15-rummel-toilette",
             "title": "Dummy Titel",
             "icon": "",
+            "bitmask": "B",
+            "flag": 2,
             "options": ["Fahrzeugschein suchen", "Rücksprache mit Dieter halten"],
             "paths": ["18-keller", "17-park-4"],
             "loop": "loop-toilette"
@@ -135,14 +149,22 @@
             "title": "Dummy Titel",
             "icon": "",
             "options": ["Nach dem Fahrzeugschein im Keller suchen", "Nachgeben"],
-            "paths": ["18-keller", "ending-files"],
+            "paths": ["18-keller", "end"],
             "loop": "loop-park-4"
         },
         {
             "name": "18-keller",
             "title": "Dummy Titel",
             "icon": "",
-            "paths": ["ending-files"]
+            "bitmask": "A",
+            "flag": 1,
+            "paths": ["end"]
+        },
+        {
+            "name": "end",
+            "title": "Das Ende",
+            "icon": "",
+            "end": true
         }
     ]
 }
