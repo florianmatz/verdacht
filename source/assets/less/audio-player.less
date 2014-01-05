@@ -1,0 +1,102 @@
+.player {
+
+    margin-bottom: 30px;
+
+    .bar {
+        background: rgba(255, 255, 255, 0.5);
+        height: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .bar-current {
+        background: @white;
+        height: 100%;
+        width: 0px;
+    }
+
+    .playback .head, .volume .head {
+        background: @white;
+        cursor: pointer;
+        position: relative;
+            top: -2px;
+            left: 0px;
+        transform: translate(0, -50%);
+        width: 8px;
+    }
+
+    .playback {
+        .clearfix();
+
+        .head {
+            height: 35px;
+        }
+
+        .time-current, .time-total {
+            font-size: 17px;
+            margin-top: 20px;
+        }
+
+        .time-current {
+            float: left;
+        }
+
+        .time-total {
+            float: right;
+        }
+
+    }
+
+    .controls {
+        margin: 0 auto;
+
+        .toggler {
+            background: transparent;
+            border: 2px solid @white;
+            display: block;
+            height: 54px;
+            margin: 0px auto 10px auto;
+            padding: 0;
+            position: relative;
+            width: 54px;
+
+            div {
+                font-size: 25px;
+                line-height: 50px;
+            }
+
+        }
+
+        .volume {
+
+            margin: 30px auto;
+            position: relative;
+            width: 100px;
+
+            a {
+                position: absolute;
+                    top: -10px;
+                    right: -40px;
+
+                &:first-child {
+                    left: -28px;
+                    right: auto;
+                }
+            }
+
+
+            .bar-current {
+                width: 70%;
+            }
+
+            .head {
+                height: 25px;
+                width: 5px;
+                left: 70%;
+            }
+
+        }
+
+    }
+
+}

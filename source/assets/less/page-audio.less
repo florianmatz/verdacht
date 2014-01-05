@@ -8,14 +8,53 @@
             pointer-events: none;
             opacity: 0;
         }
+    }
+
+    .chapter {
+
+        h2 {
+            margin: 18px 0;
+
+            @media (min-width: @screen-desktop) {
+                margin: 25px 0;
+            }
+
+        }
 
         h2 span {
             display: block;
             font-weight: normal;
+            margin-bottom: 3px;
+        }
+
+        .icon {
+            background: @black;
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+            width: 100px;
+
+            @media (min-width: @screen-desktop) {
+                height: 125px;
+                width: 125px;
+            }
+
+            span {
+                font-size: 40px;
+                position: absolute;
+                    left: 50%;
+                    top: 50%;
+                transform: translate(-50%,-50%);
+
+                @media (min-width: @screen-desktop) {
+                    font-size: 60px;
+                }
+            }
+
         }
 
         .decisions {
-            display: inline-block;
+            display: none;
 
             li:last-child {
                 margin-top: 40px;
@@ -41,6 +80,5 @@
 
         }
     }
-
 
 }

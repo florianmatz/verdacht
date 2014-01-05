@@ -2,10 +2,13 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'tpl!../templates/sound.template'
-  ], function($, _, Backbone, template){
+  'tpl!../templates/sound.template',
+  'audioPlayer'
+  ], function($, _, Backbone, template, audioPlayer){
 
     SoundView = Backbone.View.extend({
+
+      className: 'chapter',
 
       events: {
         'click .replay': 'replay'
@@ -16,8 +19,13 @@ define([
       },
 
       render: function(chapter) {
+        this.player = new audioPlayer(this.model.attributes.name);
+
         this.model.attributes.chapter = chapter;
         this.$el.html(template(this.model.attributes));
+        this.$el
+          .find('.placeholder-player')
+          .replaceWith(this.player.$el);
         return this;
       },
 

@@ -1,13 +1,14 @@
+<div class="icon">
+  <span class="icon-compass"></span>
+</div>
+
 <h2>
   <span>Kapitel <%= chapter %></span>
   <%= title %> | <%= name %>
 </h2>
-<div class="icon">
 
-</div>
-<div class="player">
+<div class="placeholder-player"></div>
 
-</div>
 <ul class="decisions list-unstyled">
 
   <% if(typeof options != 'undefined') { _.each(options, function(option, index) { %>
@@ -27,6 +28,5 @@
       <% if(totalReplay){ %>Hörspiel<% } %> Erneut anhören
     </a>
   </li>
-
 
 </ul>

@@ -1,0 +1,27 @@
+<div class="player">
+  <div class="playback">
+    <div class="bar">
+      <div class="bar-current" data-follow="true"></div>
+      <div class="head"></div>
+    </div>
+    <span class="time-current">
+      00:00
+    </span>
+    <span class="time-total">
+      03:26
+    </span>
+  </div>
+  <div class="controls">
+    <a href="#" class="btn toggler">
+      <div class="icon-pause"></div>
+    </a>
+    <div class="volume">
+      <a href="#" class="icon-volume-mute" data-volume="dec"></a>
+      <div class="bar">
+        <div class="bar-current" data-follow="true"></div>
+        <div class="head"></div>
+      </div>
+      <a href="#" class="icon-volume-high" data-volume="inc"></a>
+    </div>
+  </div>
+</div>
