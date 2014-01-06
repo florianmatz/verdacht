@@ -42,10 +42,13 @@ define([
 
       render: function(nextView) {
 
+
         if(nextView) {
 
           this.$el.one(this.transitionEnd, $.proxy( function() {
             this.renderSoundView(nextView);
+            this.currentView.remove();
+            this.currentView = nextView;
           }, this ));
 
           this.$el.addClass('fading');
@@ -53,6 +56,7 @@ define([
         }else {
           // At audio start
           this.renderSoundView(this.soundViews[0]);
+          this.currentView = this.soundViews[0];
         }
 
         return this;
@@ -67,6 +71,8 @@ define([
 
       proceed: function(evt) {
         evt.preventDefault();
+
+        this.currentView.stopLoop();
 
         var nextSound = $(evt.currentTarget).data('next'),
             nextView  = _.find(this.soundViews, function(soundView) { return soundView.model.get('name')===nextSound; }),
@@ -92,6 +98,7 @@ define([
         }
 
         this.currentChapter++;
+        //this.currentView.remove();
         this.render(nextView);
 
       },

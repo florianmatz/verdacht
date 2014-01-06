@@ -54,10 +54,22 @@
         }
 
         .decisions {
-            display: none;
+
+            display: inline-block;
+
+            &.out {
+                display: none;
+            }
 
             li:last-child {
                 margin-top: 40px;
+            }
+
+            .total-replay, .replay {
+                span:before {
+                    font-size: 20px;
+                    margin-right: 10px;
+                }
             }
         }
 
@@ -65,7 +77,7 @@
             display: block;
             margin-bottom: 20px;
 
-            span {
+            &.proceed span {
                 border-bottom: 2px solid @white;
                 display: block;
                 padding-bottom: 3px;

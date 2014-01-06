@@ -24,13 +24,13 @@ define([
     PageScroller.prototype.init = function(){
       //init Plugin
       this.$el.onepage_scroll({
-        sectionContainer: 'section',
-        easing: 'ease',
-        animationTime: 1000,
-        pagination: true,
-        updateURL: false,
+        sectionContainer  : 'section',
+        easing            : 'ease',
+        animationTime     : 1000,
+        pagination        : true,
+        updateURL         : false,
         responsiveFallback: 992,
-        afterMove: $.proxy(this.showLogoFlag, this)
+        afterMove         : $.proxy(this.showLogoFlag, this)
       });
       this.addListeners();
       this.watchResize();

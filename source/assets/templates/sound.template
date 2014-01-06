@@ -9,7 +9,7 @@
 
 <div class="placeholder-player"></div>
 
-<ul class="decisions list-unstyled">
+<ul class="decisions list-unstyled out">
 
   <% if(typeof options != 'undefined') { _.each(options, function(option, index) { %>
     <li>
@@ -25,7 +25,7 @@
   <li>
     <% var totalReplay = (typeof end != 'undefined') %>
     <a href="#" class="btn <% if(totalReplay){%>total-<%}%>replay">
-      <% if(totalReplay){ %>Hörspiel<% } %> Erneut anhören
+      <% if(totalReplay){ %>Hörspiel<% } %> <span class="icon-loop">Erneut anhören</span>
     </a>
   </li>
 

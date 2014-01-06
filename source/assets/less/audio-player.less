@@ -1,6 +1,23 @@
 .player {
 
     margin-bottom: 30px;
+    transition: opacity .5s;
+
+    &.loading {
+        .playback, .controls {
+            pointer-events: none;
+            opacity: 0;
+        }
+    }
+
+    .loader {
+        margin: 25px auto 0;
+        position: static;
+    }
+
+    .playback, .controls {
+        transition: opacity .3s;
+    }
 
     .bar {
         background: rgba(255, 255, 255, 0.5);
@@ -19,9 +36,8 @@
         background: @white;
         cursor: pointer;
         position: relative;
-            top: -2px;
             left: 0px;
-        transform: translate(0, -50%);
+        //transform: translate(0, -50%);
         width: 8px;
     }
 
@@ -29,6 +45,7 @@
         .clearfix();
 
         .head {
+            top: -20px;
             height: 35px;
         }
 
@@ -86,13 +103,14 @@
 
 
             .bar-current {
-                width: 70%;
+                width: 100%;
             }
 
             .head {
                 height: 25px;
                 width: 5px;
-                left: 70%;
+                left: 100%;
+                top: -15px;
             }
 
         }

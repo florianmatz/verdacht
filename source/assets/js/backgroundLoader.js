@@ -23,13 +23,13 @@ define([
        * @property {String} imgPath path to the images
        * @type {String}
        */
-      this.imgPath = "assets/img/";
+      this.imgPath = 'assets/img/';
 
       /**
        * @property {jQuery} $loader The visual loading indicator
        * @type {[type]}
        */
-      this.$loader = $('.loader');
+      this.$loader = $('.loader-bg');
 
       this.load();
     };

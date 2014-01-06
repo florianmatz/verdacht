@@ -6,7 +6,7 @@
             "icon": "",
             "options": ["Den Wagen verlassen", "Sitzen bleiben"],
             "paths": ["02-park-1-strasse", "03-park-2"],
-            "loop": "loop-wohnung-taxi"
+            "loop": "loop-taxi"
         },
         {
             "name": "02-park-1-strasse",
@@ -110,6 +110,7 @@
         },
         {
             "name": "13-sms-1",
+            "nofile": true,
             "title": "Dummy Titel",
             "icon": "",
             "sms": "send",
@@ -119,6 +120,7 @@
         },
         {
             "name": "14-sms-2",
+            "nofile": true,
             "title": "Dummy Titel",
             "icon": "",
             "sms": "send",

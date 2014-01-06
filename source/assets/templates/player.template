@@ -1,4 +1,5 @@
-<div class="player">
+<div class="player loading">
+  <div class="loader show"></div>
   <div class="playback">
     <div class="bar">
       <div class="bar-current" data-follow="true"></div>
@@ -8,7 +9,7 @@
       00:00
     </span>
     <span class="time-total">
-      03:26
+      00:00
     </span>
   </div>
   <div class="controls">

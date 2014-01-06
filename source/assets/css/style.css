@@ -3021,6 +3021,25 @@ hr {
 
 .player {
   margin-bottom: 30px;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+.player.loading .playback,
+.player.loading .controls {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.player .loader {
+  margin: 25px auto 0;
+  position: static;
+}
+
+.player .playback,
+.player .controls {
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
 }
 
 .player .bar {
@@ -3041,10 +3060,7 @@ hr {
   background: #ffffff;
   cursor: pointer;
   position: relative;
-  top: -2px;
   left: 0px;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
   width: 8px;
 }
 
@@ -3069,6 +3085,7 @@ hr {
 }
 
 .player .playback .head {
+  top: -20px;
   height: 35px;
 }
 
@@ -3124,13 +3141,14 @@ hr {
 }
 
 .player .controls .volume .bar-current {
-  width: 70%;
+  width: 100%;
 }
 
 .player .controls .volume .head {
   height: 25px;
   width: 5px;
-  left: 70%;
+  left: 100%;
+  top: -15px;
 }
 
 section {
@@ -3377,6 +3395,10 @@ section.neededResize .container {
 }
 
 #audio .chapter .decisions {
+  display: inline-block;
+}
+
+#audio .chapter .decisions.out {
   display: none;
 }
 
@@ -3384,12 +3406,18 @@ section.neededResize .container {
   margin-top: 40px;
 }
 
+#audio .chapter .decisions .total-replay span:before,
+#audio .chapter .decisions .replay span:before {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
 #audio .chapter .btn {
   display: block;
   margin-bottom: 20px;
 }
 
-#audio .chapter .btn span {
+#audio .chapter .btn.proceed span {
   border-bottom: 2px solid #ffffff;
   display: block;
   padding-bottom: 3px;
