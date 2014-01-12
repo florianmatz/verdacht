@@ -93,6 +93,7 @@ define([
     };
 
     AudioPlayer.prototype.initAudioListeners = function() {
+
       this.$sound.on('loadedmetadata', $.proxy( this.setTotalTime, this ));
       this.$sound.on('canplay', $.proxy( this.startPlayback, this ));
       this.$sound.on('timeupdate', $.proxy( this.updateTime, this ));
@@ -129,6 +130,7 @@ define([
     };
 
     AudioPlayer.prototype.togglePlayback = function(evt) {
+
       evt.preventDefault();
 
       if(this.sound.paused) {
