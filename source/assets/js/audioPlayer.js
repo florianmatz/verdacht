@@ -6,7 +6,7 @@ define([
   ], function($, _, template, utils){
 
     /**
-     * Class to load background images depending on the current viewport
+     * A simple AudioPlayer
      * @class AudioPlayer
      */
     AudioPlayer = function(file) {
@@ -48,11 +48,29 @@ define([
     };
 
     AudioPlayer.prototype.init = function() {
+      // this.addInterfaceListeners();
+    };
+
+    AudioPlayer.prototype.setFile = function(file) {
       this.addInterfaceListeners();
+      this.file = file;
       this.initAudio();
     };
 
+    AudioPlayer.prototype.removeInterFaceListeners = function() {
+
+      var $elements = [this.$playback, this.$playbackHead, this.$playbackBar, this.$volume, this.$volumeHead, this.$volumeBar, this.$toggler];
+
+      $.each($elements, function(index, $item) {
+        $item.unbind();
+      });
+
+    };
+
     AudioPlayer.prototype.addInterfaceListeners = function() {
+
+      // Kill old Listeners
+      this.removeInterFaceListeners();
 
       // Playback
       // --------------------------
@@ -74,9 +92,15 @@ define([
     };
 
     AudioPlayer.prototype.initAudio = function() {
-      this.sound = new Audio();
-      this.$sound = $(this.sound);
-      this.sound.preload = 'metadata';
+
+      this.togglePlaybackIcon('play');
+
+      if(!this.sound) {
+        this.sound = new Audio();
+        this.$sound = $(this.sound);
+        this.sound.preload = 'metadata';
+        this.initAudioListeners();
+      }
 
       if(this.sound.canPlayType("audio/mp3")) {
          this.sound.src = this.filePath+this.file+'.mp3';
@@ -89,23 +113,23 @@ define([
         this.setSavedVolume(sessionStorage.getItem('volume'));
       }
 
-      this.initAudioListeners();
     };
 
     AudioPlayer.prototype.initAudioListeners = function() {
-
-      this.$sound.on('loadedmetadata', $.proxy( this.setTotalTime, this ));
+      this.$sound.unbind();
+      this.$sound.on('loadedmetadata', $.proxy( this.getTotalTime, this ));
       this.$sound.on('canplay', $.proxy( this.startPlayback, this ));
       this.$sound.on('timeupdate', $.proxy( this.updateTime, this ));
       this.$sound.on('waiting', $.proxy( this.onBuffering, this ));
       this.$sound.on('ended', $.proxy( this.onPlaybackEnd, this ));
     };
 
-    AudioPlayer.prototype.setTotalTime = function() {
+    AudioPlayer.prototype.getTotalTime = function() {
       this.totalTime = this.sound.duration;
       var convertedTime  =  this.convertSeconds(this.sound.duration);
       timeString = convertedTime.minutes + ':' + convertedTime.seconds;
       this.$el.find('.time-total').html(timeString);
+      console.log('metadata loaded!', this.sound, this.sound.duration, this.sound.preload);
     };
 
     AudioPlayer.prototype.startPlayback = function() {
@@ -115,6 +139,11 @@ define([
     };
 
     AudioPlayer.prototype.updateTime = function() {
+
+      if(this.totalTime === 0) {
+        this.getTotalTime();
+      }
+
       var currentTime      =  this.convertSeconds(this.sound.currentTime),
           timeString       = currentTime.minutes+':'+currentTime.seconds,
           percentagePlayed = 100 / this.totalTime * this.sound.currentTime;
@@ -134,7 +163,7 @@ define([
       evt.preventDefault();
 
       if(this.sound.paused) {
-        this.togglePlaybackIcon();
+        this.togglePlaybackIcon('play');
         this.sound.play();
       }else {
         this.togglePlaybackIcon('pause');
@@ -187,16 +216,16 @@ define([
     };
 
     AudioPlayer.prototype.onPlaybackEnd = function() {
-      this.$el.trigger('playbackEnd');
       this.togglePlaybackIcon('pause');
+      this.$el.trigger('playbackEnd');
+      console.log('on end');
     };
 
     AudioPlayer.prototype.restart = function() {
       this.sound.currentTime = 0;
       this.sound.play();
-      this.togglePlaybackIcon();
+      this.togglePlaybackIcon('play');
     };
-
 
 
     /**
@@ -302,8 +331,8 @@ define([
 
     AudioPlayer.prototype.zPad = function(num, size) {
         if(!size) size = 2;
-        var s = num+"";
-        while (s.length < size) s = "0" + s;
+        var s = num+'';
+        while (s.length < size) s = '0' + s;
         return s;
     };
 

@@ -67,7 +67,7 @@
             "options": ["Rudi, müssen uns unbedingt sehen. Morgen, 16 Uhr. Nähere Infos dann. Gruß, Klaus."],
             "sms": "send",
             "paths": ["15-rummel-toilette"],
-            "loop": "loop-sms-1"
+            "loop": "loop-sms"
         },
         {
             "name": "09-bordell-a",
@@ -164,7 +164,7 @@
         },
         {
             "name": "end",
-            "title": "Das Ende",
+            "title": "Das Ende, Teil 1",
             "icon": "",
             "end": true
         }

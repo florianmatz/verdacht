@@ -1,4 +1,7 @@
 require.config({
+
+    catchError: true,
+
     paths: {
         jquery: '../libs/jquery/jquery',
         onepageScroll: '../libs/onepage-scroll/jquery.onepage-scroll',

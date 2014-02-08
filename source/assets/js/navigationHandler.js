@@ -76,18 +76,12 @@ define([
     NavigationHandler.prototype.onNavClick = function(evt) {
       var $target  = $(evt.currentTarget),
           viewport = utils.getViewport();
-      evt.preventDefault();
       this.removeFlag($target);
       if( (viewport==='desktop' || viewport==='lg-desktop') && !this.$body.hasClass('disabled-onepage-scroll') ){
+        evt.preventDefault();
         this.$main.moveTo($target.data('slide'));
       }
-      else {
-        var scrollTarget = $($target.attr('href')).offset().top;
-        // fix chrome bug!
-        $('html, body, .wrapper').animate({scrollTop: scrollTarget}, 1000);
-      }
       this.$el.addClass('reset');
-      window.location.hash = '';
     };
 
     /**

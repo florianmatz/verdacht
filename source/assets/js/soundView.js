@@ -3,9 +3,8 @@ define([
   'underscore',
   'backbone',
   'tpl!../templates/sound.template',
-  'audioPlayer',
   'utils'
-  ], function($, _, Backbone, template, audioPlayer, utils){
+  ], function($, _, Backbone, template, utils){
 
     SoundView = Backbone.View.extend({
 
@@ -13,10 +12,11 @@ define([
       filePath: 'assets/sounds/',
 
       events: {
-        'click .replay': 'replay'
+        'click .replay' : 'replay'
       },
 
-      initialize: function() {
+      initialize: function(options) {
+        this.player = options.player;
       },
 
       render: function(chapter) {
@@ -26,7 +26,6 @@ define([
         this.$decisions = this.$el.find('.decisions');
 
         if(this.model.get('loop')) {
-          console.log('init den loop');
           this.initLoop();
         }
 
@@ -35,7 +34,16 @@ define([
         }
 
         if(!this.model.get('nofile')){
-          this.initPlayer();
+          this.$player = this.player.$el;
+
+          if(this.model.get('end')) {
+            this.playEnd();
+          } else {
+            this.$player.one('playbackEnd', $.proxy( this.showDecision, this ));
+            this.player.setFile(this.model.get('name'));
+          }
+
+          this.$player.show();
           this.$el
             .find('.placeholder-player')
             .replaceWith(this.$player);
@@ -50,11 +58,13 @@ define([
         evt.preventDefault();
         this.stopLoop();
         this.$decisions.addClass('out');
+        this.$player.one('playbackEnd', $.proxy( this.showDecision, this ));
         this.$player.show();
         this.player.restart();
       },
 
       showDecision: function() {
+
         if(this.$player) {
           this.$player.hide();
         }
@@ -63,11 +73,6 @@ define([
         this.playMessage();
       },
 
-      initPlayer: function() {
-        this.player = new audioPlayer(this.model.get('name'));
-        this.$player = this.player.$el;
-        this.$player.on('playbackEnd', $.proxy( this.showDecision, this ));
-      },
 
       initLoop: function() {
 
@@ -110,7 +115,7 @@ define([
          if(this.message.canPlayType("audio/mp3")) {
             this.message.src = this.filePath+'message.mp3';
          }
-         else if(this.loop.canPlayType("audio/ogg")) {
+         else if(this.message.canPlayType("audio/ogg")) {
 
          }
        },
@@ -129,6 +134,26 @@ define([
         }
 
         this.message.play();
+      },
+
+      playEnd: function() {
+
+        this.$player.one('playbackEnd', $.proxy( function() {
+
+          var $h2 = this.$el.find('h2');
+
+          $h2.find('span:nth-of-type(2)').text('Das Ende, Teil 2');
+
+          this.$player.one('playbackEnd', $.proxy( function() {
+            this.showDecision();
+          }, this) );
+
+          this.player.setFile(this.endingPartB);
+
+        }, this));
+
+        this.player.setFile(this.endingPartA);
+
       }
 
 

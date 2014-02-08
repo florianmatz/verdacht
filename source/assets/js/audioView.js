@@ -4,16 +4,17 @@ define([
   'backbone',
   'soundView',
   'json!../json/sounds.json',
-  'utils'
-  ], function($, _, Backbone, soundView, json, utils){
+  'utils',
+  'audioPlayer'
+  ], function($, _, Backbone, soundView, json, utils, AudioPlayer){
 
 
     AudioView = Backbone.View.extend({
 
       el: $('#audio .sounds'),
       events: {
-        'click .proceed': 'proceed',
-        'click .total-replay': 'totalReplay'
+        'click .proceed'      : 'proceed',
+        'click .total-replay' : 'totalReplay'
       },
       transitionEnd: Utils.prefixedTransitionEnd,
       soundViews: [],
@@ -22,6 +23,7 @@ define([
       bitmaskB: 0 | 0 | 0,
 
       initialize: function() {
+        this.player = new AudioPlayer();
         this.createSounds();
       },
 
@@ -31,7 +33,8 @@ define([
 
           var model = new Backbone.Model(item),
               view  = new SoundView({
-                model: model
+                model: model,
+                player: this.player
               });
 
           this.soundViews.push(view);
@@ -41,7 +44,6 @@ define([
       },
 
       render: function(nextView) {
-
 
         if(nextView) {
 
@@ -87,7 +89,6 @@ define([
 
         // Dummy to come to the very end from the cellar automatically, replace with sound events
         if(paths && paths.length === 1 && paths[0]==='end') {
-          console.log('have to proceed to the end, cellar!');
           nextView = _.last(this.soundViews);
         }
 
@@ -95,10 +96,11 @@ define([
         if(nextView.model.get('end')){
           console.log('am ende!');
           console.log(this.bitmaskA, this.bitmaskB);
+          nextView.endingPartA = 'ending-a-'+this.bitmaskA;
+          nextView.endingPartB = 'ending-b-'+this.bitmaskB;
         }
 
         this.currentChapter++;
-        //this.currentView.remove();
         this.render(nextView);
 
       },

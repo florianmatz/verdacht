@@ -47,14 +47,19 @@ define([
 
       $.each(this.$sections, function(index, item) {
         var $item = $(item),
-            path  = self.imgPath+'bg-'+$item.attr('id')+'-'+viewport+'.jpg';
+            path  = self.imgPath+'bg-'+$item.attr('id')+'-'+viewport+'.jpg',
+            setImages = function() {
+              $item.css('background-image', 'url('+path+')');
+              itemsLoaded++;
+              if(itemsLoaded === self.$sections.length) {
+                self.$loader.removeClass('show');
+              }
+            };
 
         require(['image!'+path], function (img) {
-          $item.css('background-image', 'url('+path+')');
-          itemsLoaded++;
-          if(itemsLoaded === self.$sections.length) {
-            self.$loader.removeClass('show');
-          }
+          setImages();
+        }, function(error) {
+          setImages();
         });
       });
 

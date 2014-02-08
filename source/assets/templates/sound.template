@@ -4,7 +4,7 @@
 
 <h2>
   <span>Kapitel <%= chapter %></span>
-  <%= title %> | <%= name %>
+  <span><%= title %> | <%= name %></span>
 </h2>
 
 <div class="placeholder-player"></div>

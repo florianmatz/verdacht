@@ -3358,7 +3358,7 @@ section.neededResize .container {
   }
 }
 
-#audio .chapter h2 span {
+#audio .chapter h2 span:first-child {
   display: block;
   font-weight: normal;
   margin-bottom: 3px;

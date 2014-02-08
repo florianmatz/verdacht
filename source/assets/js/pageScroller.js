@@ -34,7 +34,6 @@ define([
       });
       this.addListeners();
       this.watchResize();
-      console.log('init');
     };
 
     /**
