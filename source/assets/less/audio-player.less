@@ -70,15 +70,21 @@
             background: transparent;
             border: 2px solid @white;
             display: block;
-            height: 54px;
+            height: 55px;
             margin: 0px auto 10px auto;
             padding: 0;
             position: relative;
-            width: 54px;
+            width: 55px;
+
+            &:hover, &:active, &:focus {
+                background: @white;
+                color: @black;
+                text-decoration: none;
+            }
 
             div {
                 font-size: 25px;
-                line-height: 50px;
+                line-height: 52px;
             }
 
         }

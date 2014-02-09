@@ -47,7 +47,15 @@ define([
      * @method init
      */
     NavigationHandler.prototype.init = function(){
-      this.addListeners();
+      var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+
+      // hide menu trigger due to incompetence of iOS for EVERYTHING
+      if(!iOS) {
+        this.addListeners();
+      }else {
+        this.$menuTrigger.css('display', 'none');
+      }
+
     };
 
     /**

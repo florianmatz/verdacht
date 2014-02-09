@@ -74,13 +74,16 @@ define([
       },
 
 
-      initLoop: function() {
+      initLoop: function(custom) {
 
         this.loop = new Audio();
-
         this.loop.loop = true;
+
+        var path = this.filePath;
+        path+= custom ? custom : this.model.get('loop');
+
         if(this.loop.canPlayType("audio/mp3")) {
-           this.loop.src = this.filePath+this.model.get('loop')+'.mp3';
+           this.loop.src = path+'.mp3';
         }
         else if(this.loop.canPlayType("audio/ogg")) {
 
@@ -146,6 +149,8 @@ define([
 
           this.$player.one('playbackEnd', $.proxy( function() {
             this.showDecision();
+            this.initLoop(this.outro);
+            this.playLoop();
           }, this) );
 
           this.player.setFile(this.endingPartB);

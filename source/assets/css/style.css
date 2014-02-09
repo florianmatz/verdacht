@@ -2467,7 +2467,9 @@ html {
 
 .disabled-onepage-scroll,
 .disabled-onepage-scroll .wrapper {
-  overflow: auto;
+  overflow: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .disabled-onepage-scroll .onepage-wrapper .section {
@@ -2531,7 +2533,19 @@ you can use the generic selector below, but it's slower:
 .icon-volume-mute,
 .icon-loop,
 .icon-play,
-.icon-pause {
+.icon-pause,
+.icon-road,
+.icon-lips,
+.icon-bell,
+.icon-tree,
+.icon-steps,
+.icon-user,
+.icon-chrome,
+.icon-exit,
+.icon-stairs,
+.icon-mobile,
+.icon-rocket,
+.icon-contract {
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -2588,6 +2602,54 @@ you can use the generic selector below, but it's slower:
   content: "\e00a";
 }
 
+.icon-road:before {
+  content: "\e00b";
+}
+
+.icon-lips:before {
+  content: "\e00c";
+}
+
+.icon-bell:before {
+  content: "\e00d";
+}
+
+.icon-tree:before {
+  content: "\e00e";
+}
+
+.icon-steps:before {
+  content: "\e00f";
+}
+
+.icon-user:before {
+  content: "\e010";
+}
+
+.icon-chrome:before {
+  content: "\e011";
+}
+
+.icon-exit:before {
+  content: "\e012";
+}
+
+.icon-stairs:before {
+  content: "\e013";
+}
+
+.icon-mobile:before {
+  content: "\e014";
+}
+
+.icon-rocket:before {
+  content: "\e015";
+}
+
+.icon-contract:before {
+  content: "\e016";
+}
+
 .loader {
   background-color: #ffffff;
   height: 30px;
@@ -2605,6 +2667,13 @@ you can use the generic selector below, but it's slower:
 
 .loader.show {
   opacity: 1;
+}
+
+.loader.loader-page {
+  background-color: #000000;
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
 }
 
 @-webkit-keyframes rotateplane {
@@ -2871,12 +2940,26 @@ body {
   }
 }
 
+.main {
+  opacity: 0;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+}
+
+.main.in {
+  opacity: 1;
+}
+
 a,
 a:hover,
 a:active,
 a:focus {
   color: #ffffff;
   text-decoration: none;
+}
+
+a.lined {
+  position: relative;
 }
 
 a.lined:before {
@@ -2938,39 +3021,18 @@ hr {
   font-weight: 700;
   padding: 8px 15px;
   position: relative;
-  overflow: hidden;
   text-decoration: none;
-  -webkit-transition: color .3s;
-  transition: color .3s;
+  -webkit-transition: color .3s, background .3s;
+  transition: color .3s, background .3s;
   z-index: 2;
-}
-
-.btn:after {
-  content: "";
-  background: #ffffff;
-  border: 2px solid #ffffff;
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: -100%;
-  -webkit-transition: left .3s;
-  transition: left .3s;
-  width: 100%;
-  z-index: -1;
 }
 
 .btn:hover,
 .btn:active,
 .btn:focus {
+  background: #ffffff;
   color: #000000;
   text-decoration: none;
-}
-
-.btn:hover:after,
-.btn:active:after,
-.btn:focus:after {
-  left: 0;
 }
 
 .btn span {
@@ -3111,16 +3173,24 @@ hr {
   background: transparent;
   border: 2px solid #ffffff;
   display: block;
-  height: 54px;
+  height: 55px;
   margin: 0px auto 10px auto;
   padding: 0;
   position: relative;
-  width: 54px;
+  width: 55px;
+}
+
+.player .controls .toggler:hover,
+.player .controls .toggler:active,
+.player .controls .toggler:focus {
+  background: #ffffff;
+  color: #000000;
+  text-decoration: none;
 }
 
 .player .controls .toggler div {
   font-size: 25px;
-  line-height: 50px;
+  line-height: 52px;
 }
 
 .player .controls .volume {
@@ -3172,19 +3242,19 @@ section {
   }
 }
 
-section.neededResize {
+section.needed-resize {
   height: auto !important;
 }
 
-section.neededResize .inner,
-section.neededResize .container {
+section.needed-resize .inner,
+section.needed-resize .container {
   position: static;
   -webkit-transform: translate(0, 0);
   transform: translate(0, 0);
 }
 
 @media (min-width: 992px) {
-  section.neededResize {
+  section.needed-resize {
     height: auto !important;
   }
 }
@@ -3286,12 +3356,17 @@ section.neededResize .container {
     position: absolute;
     left: 50%;
     top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -51%);
+    transform: translate(-50%, -51%);
   }
 
   .no-js .inner {
     position: static;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  .inner .pos-calced {
     -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
   }
@@ -3348,23 +3423,27 @@ section.neededResize .container {
   opacity: 0;
 }
 
-#audio .chapter h2 {
+#audio .chapter h2,
+#audio .intro h2 {
   margin: 18px 0;
 }
 
 @media (min-width: 992px) {
-  #audio .chapter h2 {
+  #audio .chapter h2,
+  #audio .intro h2 {
     margin: 25px 0;
   }
 }
 
-#audio .chapter h2 span:first-child {
+#audio .chapter h2 span:first-child,
+#audio .intro h2 span:first-child {
   display: block;
   font-weight: normal;
   margin-bottom: 3px;
 }
 
-#audio .chapter .icon {
+#audio .chapter .icon,
+#audio .intro .icon {
   background: #000000;
   height: 100px;
   margin: 0 auto;
@@ -3373,13 +3452,15 @@ section.neededResize .container {
 }
 
 @media (min-width: 992px) {
-  #audio .chapter .icon {
+  #audio .chapter .icon,
+  #audio .intro .icon {
     height: 125px;
     width: 125px;
   }
 }
 
-#audio .chapter .icon span {
+#audio .chapter .icon span,
+#audio .intro .icon span {
   font-size: 40px;
   position: absolute;
   left: 50%;
@@ -3389,43 +3470,136 @@ section.neededResize .container {
 }
 
 @media (min-width: 992px) {
-  #audio .chapter .icon span {
+  #audio .chapter .icon span,
+  #audio .intro .icon span {
     font-size: 60px;
   }
 }
 
-#audio .chapter .decisions {
+#audio .chapter .decisions,
+#audio .intro .decisions {
   display: inline-block;
 }
 
-#audio .chapter .decisions.out {
+#audio .chapter .decisions.out,
+#audio .intro .decisions.out {
   display: none;
 }
 
-#audio .chapter .decisions li:last-child {
+#audio .chapter .decisions li:last-child,
+#audio .intro .decisions li:last-child {
   margin-top: 40px;
 }
 
 #audio .chapter .decisions .total-replay span:before,
-#audio .chapter .decisions .replay span:before {
+#audio .intro .decisions .total-replay span:before,
+#audio .chapter .decisions .replay span:before,
+#audio .intro .decisions .replay span:before {
   font-size: 20px;
   margin-right: 10px;
 }
 
-#audio .chapter .btn {
+#audio .chapter .btn,
+#audio .intro .btn {
   display: block;
   margin-bottom: 20px;
 }
 
-#audio .chapter .btn.proceed span {
+#audio .chapter .btn.proceed span,
+#audio .intro .btn.proceed span {
   border-bottom: 2px solid #ffffff;
   display: block;
   padding-bottom: 3px;
   margin-bottom: 5px;
 }
 
-#audio .chapter .btn:hover span {
+#audio .chapter .btn:hover span,
+#audio .intro .btn:hover span {
   border-color: #000000;
+}
+
+#audio .intro {
+  position: relative;
+  display: block;
+}
+
+#audio .intro .hint,
+#audio .intro .countdown {
+  display: block;
+  position: relative;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+@media (min-width: 992px) {
+  #audio .intro .hint,
+  #audio .intro .countdown {
+    margin: 0 auto;
+    width: 600px;
+  }
+}
+
+#audio .intro .hint.hidden,
+#audio .intro .countdown.hidden {
+  height: 0;
+  overflow: hidden;
+}
+
+#audio .intro .hint.out,
+#audio .intro .countdown.out {
+  pointer-events: none;
+  opacity: 0;
+}
+
+#audio .intro .hint h3,
+#audio .intro .countdown h3 {
+  line-height: 1.5;
+}
+
+#audio .intro .btn-start-audio,
+#audio .intro .box-countdown {
+  display: inline-block;
+}
+
+#audio .intro .box-countdown {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: 700;
+  height: 45px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  z-index: 2;
+  line-height: 41px;
+  width: 45px;
+}
+
+#audio .intro .countdown p {
+  margin: 15px auto;
+}
+
+#audio .intro .countdown small {
+  display: block;
+  margin: 15px 0;
+}
+
+#audio .intro .countdown small:nth-of-type(1) span:before {
+  margin-right: 5px;
+}
+
+@media (min-width: 992px) {
+  #audio .intro .countdown small:nth-of-type(1) span:before {
+    margin-right: 10px;
+  }
+}
+
+#audio .intro .countdown small:nth-of-type(2) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 70%;
+  padding: 10px 0;
 }
 
 #info li {
@@ -3564,13 +3738,12 @@ section.neededResize .container {
   font-size: 45px;
   display: block;
   padding: 25px;
-  -webkit-transition: -webkit-transform .3s;
-  transition: transform .3s;
+  -webkit-transition: margin-left 0.3s;
+  transition: margin-left 0.3s;
 }
 
 #contact .contact a:hover {
-  -webkit-transform: translate(20px, 0);
-  transform: translate(20px, 0);
+  margin-left: 30px;
 }
 
 @media (min-width: 992px) {
@@ -3580,13 +3753,25 @@ section.neededResize .container {
 }
 
 #contact .imprint .privacy {
-  display: block;
+  display: inline-block;
   margin-top: 15px;
-  text-decoration: underline;
 }
 
 @media (min-width: 992px) {
   #contact .imprint .privacy {
     margin-top: 20px;
   }
+}
+
+#privacy {
+  opacity: 1;
+  background: #333333;
+  overflow: auto;
+  text-transform: none;
+}
+
+#privacy section {
+  padding: 0;
+  margin: 0;
+  text-align: left;
 }

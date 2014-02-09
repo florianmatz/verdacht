@@ -16,7 +16,7 @@ define([
         'click .proceed'      : 'proceed',
         'click .total-replay' : 'totalReplay'
       },
-      transitionEnd: Utils.prefixedTransitionEnd,
+      transitionEnd: utils.prefixedTransitionEnd,
       soundViews: [],
       currentChapter: 0,
       bitmaskA: 0 | 0 | 0,
@@ -48,6 +48,7 @@ define([
         if(nextView) {
 
           this.$el.one(this.transitionEnd, $.proxy( function() {
+            this.$el.off(this.transitionEnd);
             this.renderSoundView(nextView);
             this.currentView.remove();
             this.currentView = nextView;
@@ -84,7 +85,6 @@ define([
         // set corresponding bitmask
         if(bitmask) {
           this['bitmask'+bitmask] |= nextView.model.get('flag');
-          console.log('flag set', bitmask, nextView.model.get('name'));
         }
 
         // Dummy to come to the very end from the cellar automatically, replace with sound events
@@ -94,10 +94,9 @@ define([
 
         // Select the correct endings A+B depending on the bitmasks
         if(nextView.model.get('end')){
-          console.log('am ende!');
-          console.log(this.bitmaskA, this.bitmaskB);
           nextView.endingPartA = 'ending-a-'+this.bitmaskA;
           nextView.endingPartB = 'ending-b-'+this.bitmaskB;
+          nextView.outro = 'outro';
         }
 
         this.currentChapter++;

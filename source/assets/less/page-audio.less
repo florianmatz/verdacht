@@ -10,7 +10,7 @@
         }
     }
 
-    .chapter {
+    .chapter, .intro {
 
         h2 {
             margin: 18px 0;
@@ -91,6 +91,84 @@
             }
 
         }
+    }
+
+    .intro {
+
+        position: relative;
+        display: block;
+
+        .hint, .countdown {
+            display: block;
+            position: relative;
+            transition: opacity 0.3s;
+
+            @media(min-width: @screen-desktop) {
+                margin: 0 auto;
+                width: 600px;
+            }
+
+            &.hidden {
+                height: 0;
+                overflow: hidden;
+            }
+
+            &.out {
+                pointer-events: none;
+                opacity: 0;
+            }
+
+            h3 {
+                line-height: 1.5;
+            }
+
+        }
+
+        .btn-start-audio, .box-countdown {
+            display: inline-block;
+        }
+
+        .box-countdown {
+            border: 2px solid @white;
+            color: @white;
+            display: inline-block;
+            font-weight: 700;
+            height: 45px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            z-index: 2;
+            line-height: 41px;
+            width: 45px;
+        }
+
+        .countdown {
+            p {
+                margin: 15px auto;
+            }
+
+            small {
+                 display: block;
+                 margin: 15px 0;
+            }
+
+            small:nth-of-type(1) span:before{
+                margin-right: 5px;
+                @media(min-width: @screen-desktop) {
+                    margin-right: 10px;
+                }
+            }
+
+            small:nth-of-type(2) {
+                border-bottom: 1px solid rgba(255,255,255,0.5);
+                border-top: 1px solid rgba(255,255,255,0.5);
+                font-size: 70%;
+                padding: 10px 0;
+            }
+
+        }
+
     }
 
 }

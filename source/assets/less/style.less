@@ -61,6 +61,7 @@ body:before {
 
 }
 
+
 body, html {
     height: 100%;
 }
@@ -73,6 +74,17 @@ body {
     @media ( min-width: @screen-desktop ) {
         font-size: 25px;
     }
+
+}
+
+.main {
+    opacity: 0;
+    transition: opacity .3s;
+
+    &.in {
+        opacity: 1;
+    }
+
 }
 
 // Links
@@ -82,6 +94,8 @@ a, a:hover, a:active, a:focus {
 }
 
 a.lined {
+
+    position: relative;
 
     &:before {
         background: @white;
@@ -142,31 +156,15 @@ hr {
     font-weight: 700;
     padding: 8px 15px;
     position: relative;
-    overflow: hidden;
     text-decoration: none;
-    transition: color .3s;
+    transition: color .3s, background .3s;
     z-index: 2;
 
-    &:after {
-        content: "";
-        background: @white;
-        border: 2px solid @white;
-        display: block;
-        height: 100%;
-        position: absolute;
-            top: 0;
-            left: -100%;
-        transition: left .3s;
-        width: 100%;
-        z-index: -1;
-    }
 
     &:hover, &:active, &:focus {
+        background: @white;
         color: @black;
         text-decoration: none;
-        &:after {
-            left: 0;
-        }
     }
 
     span {
@@ -227,3 +225,4 @@ hr {
 @import "page-audio";
 @import "page-info";
 @import "page-contact";
+@import "page-privacy";

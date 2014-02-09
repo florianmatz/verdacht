@@ -41,14 +41,14 @@ define([
 
       this.$toggler = this.$el.find('.toggler');
 
+      this.$togglerIcon = this.$toggler.find('div');
+
+      this.onMobile = utils.onMobile();
+
+      this.touchActivated = false;
+
       this.dragging = '';
 
-      this.init();
-
-    };
-
-    AudioPlayer.prototype.init = function() {
-      // this.addInterfaceListeners();
     };
 
     AudioPlayer.prototype.setFile = function(file) {
@@ -113,6 +113,11 @@ define([
         this.setSavedVolume(sessionStorage.getItem('volume'));
       }
 
+      if(this.onMobile && !this.touchActivated) {
+        this.togglePlaybackIcon('pause');
+        this.touchActivated = true;
+      }
+
     };
 
     AudioPlayer.prototype.initAudioListeners = function() {
@@ -121,6 +126,7 @@ define([
       this.$sound.on('canplay', $.proxy( this.startPlayback, this ));
       this.$sound.on('timeupdate', $.proxy( this.updateTime, this ));
       this.$sound.on('waiting', $.proxy( this.onBuffering, this ));
+      this.$sound.on('stalled', function() {console.log('loaded data');});
       this.$sound.on('ended', $.proxy( this.onPlaybackEnd, this ));
     };
 
@@ -129,7 +135,6 @@ define([
       var convertedTime  =  this.convertSeconds(this.sound.duration);
       timeString = convertedTime.minutes + ':' + convertedTime.seconds;
       this.$el.find('.time-total').html(timeString);
-      console.log('metadata loaded!', this.sound, this.sound.duration, this.sound.preload);
     };
 
     AudioPlayer.prototype.startPlayback = function() {
@@ -142,6 +147,8 @@ define([
 
       if(this.totalTime === 0) {
         this.getTotalTime();
+      }else if(this.onMobile) {
+        this.togglePlaybackIcon('play');
       }
 
       var currentTime      =  this.convertSeconds(this.sound.currentTime),
@@ -174,14 +181,12 @@ define([
 
     AudioPlayer.prototype.togglePlaybackIcon = function(mode) {
 
-      var $icon = this.$toggler.find('div');
-
-      if(mode==='pause') {
-        $icon
+      if(mode==='pause' && !this.$togglerIcon.hasClass('icon-play')) {
+        this.$togglerIcon
           .removeClass('icon-pause')
           .addClass('icon-play');
-      }else {
-        $icon
+      }else if(mode==='play' && !this.$togglerIcon.hasClass('icon-pause') ) {
+        this.$togglerIcon
           .removeClass('icon-play')
           .addClass('icon-pause');
       }
@@ -218,7 +223,6 @@ define([
     AudioPlayer.prototype.onPlaybackEnd = function() {
       this.togglePlaybackIcon('pause');
       this.$el.trigger('playbackEnd');
-      console.log('on end');
     };
 
     AudioPlayer.prototype.restart = function() {

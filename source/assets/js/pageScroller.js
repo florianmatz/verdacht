@@ -41,6 +41,10 @@ define([
      * @method addListeners
      */
     PageScroller.prototype.addListeners = function() {
+
+      this.$el.addClass('in');
+      $('.loader-page').removeClass('show');
+
       var self = this;
 
       // watch resize to handle height issues
@@ -54,8 +58,10 @@ define([
 
       // watch the listen button on the start screen for clicks
       $('.listen').on('click', $.proxy(function(evt){
-        evt.preventDefault();
-        this.$el.moveTo(2);
+        if(!this.$body.hasClass('disabled-onepage-scroll')) {
+          evt.preventDefault();
+          this.$el.moveTo(2);
+        }
       }, this ) );
 
     };
@@ -118,10 +124,10 @@ define([
 
       if(neededResize) {
         this.$el.responsive();
-        this.$sections.addClass('neededResize');
+        this.$sections.addClass('needed-resize');
       }else {
         this.$el.unresponsive();
-        this.$sections.removeClass('neededResize');
+        this.$sections.removeClass('needed-resize');
       }
 
     };

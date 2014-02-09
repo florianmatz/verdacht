@@ -17,7 +17,7 @@ section {
         }
     }
 
-    &.neededResize {
+    &.needed-resize {
         .inner, .container {
             position: static;
             transform: translate(0,0);
@@ -107,11 +107,15 @@ section {
         position: absolute;
             left: 50%;
             top: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%,-51%);
 
-        .no-js & {
+        .no-js &, {
             position: static;
                 transform: translate(0,0);
+        }
+
+        .pos-calced {
+            transform: translate(0,0);
         }
 
     }

@@ -14,9 +14,11 @@
         <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
-    <body>
+    <body class="disabled-onepage-scroll">
 
         <div class="border-body"></div>
+
+        <div class="loader loader-page show"></div>
 
         <div class="loader loader-bg"></div>
 
@@ -47,7 +49,7 @@
 
         <div class="main">
 
-            <section id="home">
+            <section id="home" class="needed-resize">
                 <div class="inner container">
                     <img src="assets/img/logo.svg" alt="(V)ERDACHT - ein binaurales, interaktives Hörspiel">
 
@@ -64,18 +66,54 @@
                 </div>
             </section>
 
-            <section id="audio">
+            <section id="audio" class="needed-resize">
 
                 <div class="inner container">
 
-                    <div class="intro"></div>
+                    <div class="intro">
+
+                        <span class="hint">
+                            <div class="icon">
+                              <span class="icon-headset"></span>
+                            </div>
+                            <h3>
+                              Bitte setzen Sie Ihre Köpfhörer auf. <br>
+                              Stellen Sie zudem sicher, dass Sie über LAN, W-LAN oder eine Daten-Flatrate verfügen.
+                            </h3>
+                            <a href="#" class="btn btn-start-audio">
+                                OK, Bereit!
+                            </a>
+                        </span>
+
+                        <span class="countdown hidden out">
+                            <div class="icon">
+                              <span class="icon-compass"></span>
+                            </div>
+                            <p>
+                                Nach jedem Kapitel müssen Sie eine <em>Entscheidung</em> treffen,
+                                die den Ausgang dieser Geschichte beeinflusst.
+                                <small>
+                                    <span class="icon-chrome">Runs best on Google Chrome.</span>
+                                </small>
+                                <small>
+                                    Auf mobilen Endgeräten müssen Sie das Hörspiel durch Tap auf den Wiedergabe-Button starten.
+                                </small>
+                                <h3>Hörspiel startet in</h3>
+                            </p>
+                            <div class="box-countdown">
+                                <span>3</span>
+                            </div>
+                        </span>
+
+                    </div>
+
                     <div class="sounds"></div>
 
                 </div>
 
             </section>
 
-            <section id="info">
+            <section id="info" class="needed-resize">
                  <div class="inner container">
                     <h1>Information</h1>
                     <p>
@@ -114,7 +152,7 @@
                 </div>
             </section>
 
-            <section id="contact">
+            <section id="contact" class="needed-resize">
                 <div class="inner container">
                     <h1>Kontakt & Impressum</h1>
 
@@ -135,11 +173,16 @@
                             </ul>
                             <h3>Inhaltlich Verantwortlich</h3>
                             <p>Ajan Hannemann, Dominik Litfin</p>
+                            <h3>Design & Programmierung</h3>
+                            <p>
+                                <a href="https://twitter.com/fspeckmaier">Florian Speckmaier,</a>
+                                <a href="http://www.glanzer-und-partner.de">Glanzer + Partner Werbeagentur GmbH</a>
+                            </p>
                             <h3>E-Mail</h3>
                             <a href="mailto:info@verdacht.de" class="lined">
                                 info@verdacht.de
                             </a>
-                            <a href="#" class="privacy">
+                            <a href="privacy.html" class="lined privacy" target="_blank">
                                 Informationen zum Datenschutz
                             </a>
                         </div>

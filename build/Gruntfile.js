@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       publish: {
         files: [
           {
-            src: ["**", "!less/**", "!js/**", "!templates/**", "!css/.*backup"],
+            src: ["**", "!less/**", "!js/**"],
             dest: "../publish/",
             expand: true,
             cwd: "../source/",
