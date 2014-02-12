@@ -8,8 +8,8 @@ module.exports = function(grunt) {
 
     //Überwacht alle .less dateien, und führt bei Änderung den Less Task aus
     watch: {
-      files: ["../source/assets/less/**/*.less", "../source/assets/libs/**/*.less"],
-      tasks: ["less:development", "autoprefixer"]
+      files: ['../source/assets/less/**/*.less', '../source/assets/libs/**/*.less'],
+      tasks: ['less:development', 'autoprefixer']
     },
 
     //kompiliert alle .less dateien aus angegebenem Verzeichnis ins .css dateien
@@ -17,36 +17,51 @@ module.exports = function(grunt) {
 
       development: {
         options: {
-          paths: ["../source/assets/less", "../source/assets/libs/bootstrap/less"]
+          paths: ['../source/assets/less', '../source/assets/libs/bootstrap/less']
         },
         files: {
-          "../source/assets/css/style.css" : "../source/assets/less/style.less"
-        }
-      },
-
-      publish: {
-        options: {
-          paths: ["../source/less"],
-          compress: true
-        },
-        files: {
-          "../source/css/style.css" : "../source/less/style.less"
+          '../source/assets/css/style.css' : '../source/assets/less/style.less'
         }
       }
 
+    },
+
+    clean: {
+      publish: {
+        src: ['../publish'],
+        options: {
+          force: true
+        }
+      }
     },
 
     copy: {
       publish: {
         files: [
           {
-            src: ["**", "!less/**", "!js/**"],
-            dest: "../publish/",
+            src: ['**', '!assets/less/**', '!assets/js/**', '!assets/libs/**'],
+            dest: '../publish/',
             expand: true,
-            cwd: "../source/",
+            cwd: '../source/',
             dot: true
           }
         ]
+      }
+    },
+
+    uncss: {
+      publish: {
+        files: {
+          '../publish/assets/css/style.css': ['../publish/index.html','../publish/privacy.html']
+          }
+        }
+    },
+
+    cssmin: {
+      publish: {
+        files: {
+          '../publish/assets/css/style.css': ['../publish/assets/css/style.css']
+        }
       }
     },
 
@@ -58,19 +73,35 @@ module.exports = function(grunt) {
         },
         src: '../source/assets/css/style.css'
       }
+    },
+
+    requirejs: {
+      publish: {
+        options: {
+          name: 'main',
+          baseUrl: '../source/assets/js',
+          mainConfigFile: '../source/assets/js/main.js',
+          out: '../publish/js/main.js',
+          include: ['../source/assets/libs/requirejs/require']
+        }
+      }
     }
 
   });
 
 
-  grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-contrib-less");
-  grunt.loadNpmTasks("grunt-contrib-copy");
-  grunt.loadNpmTasks("grunt-autoprefixer");
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-uncss');
+  grunt.loadNpmTasks('grunt-autoprefixer');
 
 
   // Default task.
-  grunt.registerTask("default", "clean");
-  grunt.registerTask("build", ["copy"]);
+  grunt.registerTask('default', 'clean');
+  grunt.registerTask('build', ['clean', 'copy', 'requirejs', 'uncss', 'cssmin']);
 
 };

@@ -12,6 +12,7 @@ define([
       this.$el = $('.main');
       this.$logoFlag = $('.logo-flag');
       this.$window = $(window);
+      this.$html = $('html');
       this.$body = $('body');
       this.$sections = $('.main').find('section');
       this.init();
@@ -125,9 +126,11 @@ define([
       if(neededResize) {
         this.$el.responsive();
         this.$sections.addClass('needed-resize');
+        this.$html.addClass('show-overflow');
       }else {
         this.$el.unresponsive();
         this.$sections.removeClass('needed-resize');
+        this.$html.removeClass('show-overflow');
       }
 
     };

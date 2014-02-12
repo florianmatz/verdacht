@@ -26,20 +26,19 @@ define([
             var counter  = 3,
                 interval = setInterval(function() {
 
-              $counter.text(--counter);
+                  $counter.text(--counter);
 
-              if(counter === 0) {
-                clearInterval(interval);
+                  if(counter === 0) {
+                    clearInterval(interval);
 
-                $countdown.one(utils.prefixedTransitionEnd, function() {
-                  $intro.remove();
-                  audioView.render();
-                });
+                    $countdown.one(utils.prefixedTransitionEnd, function() {
+                      $intro.remove();
+                      audioView.render();
+                    });
 
-                $countdown.addClass('out');
-
-              }
-            }, 2000);
+                    $countdown.addClass('out');
+                  }
+              }, 2000);
           };
 
           $hint.find('a').on('click', function(evt) {
