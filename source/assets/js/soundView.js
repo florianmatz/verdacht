@@ -17,6 +17,7 @@ define([
 
       initialize: function(options) {
         this.player = options.player;
+        this.parent = options.parent ? options.parent : null;
       },
 
       render: function(chapter) {
@@ -38,7 +39,8 @@ define([
 
           if(this.model.get('end')) {
             this.playEnd();
-          } else {
+          }
+          else {
             this.$player.one('playbackEnd', $.proxy( this.showDecision, this ));
             this.player.setFile(this.model.get('name'));
           }
@@ -47,7 +49,8 @@ define([
           this.$el
             .find('.placeholder-player')
             .replaceWith(this.$player);
-        }else {
+        }
+        else {
           this.showDecision();
         }
 
@@ -65,12 +68,18 @@ define([
 
       showDecision: function() {
 
-        if(this.$player) {
-          this.$player.hide();
+        // At the cellar, no decision neccessary, noch unelegant
+        if(this.model.get('paths')[0]==='end') {
+          this.parent.proceed('end');
+        }else {
+          if(this.$player) {
+            this.$player.hide();
+          }
+          this.$decisions.removeClass('out');
+          this.playLoop();
+          this.playMessage();
         }
-        this.$decisions.removeClass('out');
-        this.playLoop();
-        this.playMessage();
+
       },
 
 
@@ -145,7 +154,7 @@ define([
 
           var $h2 = this.$el.find('h2');
 
-          $h2.find('span:nth-of-type(2)').text('Das Ende, Teil 2');
+          $h2.find('span:nth-of-type(2)').text('Das Krankenhaus');
 
           this.$player.one('playbackEnd', $.proxy( function() {
             this.showDecision();

@@ -23,22 +23,27 @@ define([
           $counter          = $countdown.find('.box-countdown'),
           countDown         = function() {
 
-            var counter  = 3,
-                interval = setInterval(function() {
+            setTimeout(function() {
 
-                  $counter.text(--counter);
+              var counter  = 3,
+                  interval = setInterval(function() {
 
-                  if(counter === 0) {
-                    clearInterval(interval);
+                    $counter.text(--counter);
 
-                    $countdown.one(utils.prefixedTransitionEnd, function() {
-                      $intro.remove();
-                      audioView.render();
-                    });
+                    if(counter === 0) {
+                      clearInterval(interval);
 
-                    $countdown.addClass('out');
-                  }
-              }, 2000);
+                      $countdown.one(utils.prefixedTransitionEnd, function() {
+                        $intro.remove();
+                        audioView.render();
+                      });
+
+                      $countdown.addClass('out');
+                    }
+                }, 1000);
+
+            }, 1500);
+
           };
 
           $hint.find('a').on('click', function(evt) {

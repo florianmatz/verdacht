@@ -34,7 +34,8 @@ define([
           var model = new Backbone.Model(item),
               view  = new SoundView({
                 model: model,
-                player: this.player
+                player: this.player,
+                parent: item.paths && item.paths[0]==='end' ? this : null
               });
 
           this.soundViews.push(view);
@@ -73,23 +74,23 @@ define([
       },
 
       proceed: function(evt) {
-        evt.preventDefault();
+        if(typeof evt === 'object') {
+          evt.preventDefault();
+          nextSound = $(evt.currentTarget).data('next');
+        }
+        else {
+          nextSound = evt;
+        }
 
         this.currentView.stopLoop();
 
-        var nextSound = $(evt.currentTarget).data('next'),
-            nextView  = _.find(this.soundViews, function(soundView) { return soundView.model.get('name')===nextSound; }),
+        var nextView  = _.find(this.soundViews, function(soundView) { return soundView.model.get('name')===nextSound; }),
             bitmask   = nextView.model.get('bitmask'),
             paths     = nextView.model.get('paths');
 
         // set corresponding bitmask
         if(bitmask) {
           this['bitmask'+bitmask] |= nextView.model.get('flag');
-        }
-
-        // Dummy to come to the very end from the cellar automatically, replace with sound events
-        if(paths && paths.length === 1 && paths[0]==='end') {
-          nextView = _.last(this.soundViews);
         }
 
         // Select the correct endings A+B depending on the bitmasks

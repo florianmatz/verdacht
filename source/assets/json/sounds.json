@@ -10,7 +10,7 @@
         },
         {
             "name": "02-park-1-strasse",
-            "title": "Park & Strasse",
+            "title": "Die Stadt",
             "icon": "road",
             "options": ["Mit Dieter Rücksprache halten", "Mit Herrn Küster mitgehen"],
             "paths": ["06-park-3", "07-kanzlei-a"],
@@ -18,7 +18,7 @@
         },
         {
             "name": "03-park-2",
-            "title": "Dummy Titel",
+            "title": "Der Park",
             "icon": "icon-steps",
             "options": ["Weg zum Bahnhof fortsetzen", "Zum Entspannen in die Kirche"],
             "paths": ["04-strasse", "05-kirche"],
@@ -26,7 +26,7 @@
         },
         {
             "name": "04-strasse",
-            "title": "Dummy Titel",
+            "title": "Die Stadt",
             "icon": "road",
             "options": ["Mit Dieter Rücksprache halten", "Mit Herrn Küster mitgehen"],
             "paths": ["06-park-3", "07-kanzlei-a"],
@@ -34,7 +34,7 @@
         },
         {
             "name": "05-kirche",
-            "title": "Dummy Titel",
+            "title": "Die Kirche",
             "icon": "bell",
             "bitmask": "B",
             "flag": 4,
@@ -44,7 +44,7 @@
         },
         {
             "name": "06-park-3",
-            "title": "Dummy Titel",
+            "title": "Die S-Bahn",
             "icon": "steps",
             "options": ["In der Kirche Ruhe finden", "In einem Bordell entspannen"],
             "paths": ["05-kirche", "09-bordell-a"],
@@ -52,7 +52,7 @@
         },
         {
             "name": "07-kanzlei-a",
-            "title": "Dummy Titel",
+            "title": "Die Kanzlei",
             "icon": "user",
             "bitmask": "A",
             "flag": 4,
@@ -62,7 +62,7 @@
         },
         {
             "name": "08-kanzlei-b",
-            "title": "Dummy Titel",
+            "title": "Die Kanzlei",
             "icon": "user",
             "options": ["Rudi, müssen uns unbedingt sehen. Morgen, 16 Uhr. Nähere Infos dann. Gruß, Klaus."],
             "sms": "send",
@@ -71,9 +71,9 @@
         },
         {
             "name": "09-bordell-a",
-            "title": "Dummy Titel",
+            "title": "Das Bordell",
             "icon": "lips",
-            "maks": "B",
+            "bitmask": "B",
             "flag": 1,
             "options": ["Fliehen!", "Darauf einlassen..."],
             "paths": ["10-bordell-b", "11-bordell-c-kanzlei"],
@@ -81,7 +81,7 @@
         },
         {
             "name": "10-bordell-b",
-            "title": "Dummy Titel",
+            "title": "Das Bordell",
             "icon": "lips",
             "sms": "receive",
             "options": ["Klaus, mein Anwalt Küster will dich um 21:00 Uhr unbedingt im Fichtenwald am Weiher treffen, er muss dir dort was zeigen. Keine Sorge, er hat mein 100%iges Vertrauen. Gruß, Dieter"],
@@ -90,7 +90,7 @@
         },
         {
             "name": "11-bordell-c-kanzlei",
-            "title": "Dummy Titel",
+            "title": "Die Kanzlei",
             "icon": "user",
             "bitmask": "A",
             "flag": 4,
@@ -100,7 +100,7 @@
         },
         {
             "name": "12-wald",
-            "title": "Dummy Titel",
+            "title": "Der Wald",
             "icon": "tree",
             "bitmask": "A",
             "flag": 2,
@@ -111,7 +111,7 @@
         {
             "name": "13-sms-1",
             "nofile": true,
-            "title": "Dummy Titel",
+            "title": "SMS an Rudi",
             "icon": "mobile",
             "sms": "send",
             "options": ["Rudi, müssen uns unbedingt sehen. Morgen, 16Uhr. Rummelplatz. Nähere Infos dann. Gruß, Klaus."],
@@ -121,7 +121,7 @@
         {
             "name": "14-sms-2",
             "nofile": true,
-            "title": "Dummy Titel",
+            "title": "SMS an Rudi",
             "icon": "mobile",
             "sms": "send",
             "options": ["Rudi, müssen uns dringend sehen. Morgen, 16Uhr. Südeingang Hauptbahnhof. Bring alle alten Dokumente unseres Chevys, die gefälschten Pässe und die Flüchtlingslisten mit. Reichert und Konsorten sind wieder da und uns auf der Spur! Gruß, Klaus."],
@@ -130,7 +130,7 @@
         },
         {
             "name": "15-rummel-toilette",
-            "title": "Dummy Titel",
+            "title": "Rudi",
             "icon": "contract",
             "bitmask": "B",
             "flag": 2,
@@ -140,7 +140,7 @@
         },
         {
             "name": "16-toilette",
-            "title": "Dummy Titel",
+            "title": "Rudi",
             "icon": "contract",
             "options": ["Fahrzeugschein suchen", "Rücksprache mit Dieter halten"],
             "paths": ["18-keller", "17-park-4"],
@@ -148,7 +148,7 @@
         },
         {
             "name": "17-park-4",
-            "title": "Dummy Titel",
+            "title": "Rücksprache",
             "icon": "steps",
             "options": ["Nach dem Fahrzeugschein im Keller suchen", "Nachgeben"],
             "paths": ["18-keller", "end"],
@@ -156,7 +156,7 @@
         },
         {
             "name": "18-keller",
-            "title": "Dummy Titel",
+            "title": "Der Keller",
             "icon": "stairs",
             "bitmask": "A",
             "flag": 1,
@@ -164,7 +164,7 @@
         },
         {
             "name": "end",
-            "title": "Das Ende, Teil 1",
+            "title": "Die Lagerhalle",
             "icon": "exit",
             "end": true
         }
