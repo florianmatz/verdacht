@@ -10,7 +10,6 @@
             window.location.hash = '';
             document.documentElement.className = document.documentElement.className.replace('no-js','');
         </script>
-        <script data-main="assets/js/main" src="assets/libs/requirejs/require.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
@@ -190,7 +189,9 @@
             </section>
 
         </div>
-
+        <!-- build:js assets/js/main.js -->
+        <script data-main="assets/js/main" src="assets/libs/requirejs/require.js"></script>
+        <!-- /build -->
     </body>
 </html>
 

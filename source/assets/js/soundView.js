@@ -69,7 +69,7 @@ define([
       showDecision: function() {
 
         // At the cellar, no decision neccessary, noch unelegant
-        if(this.model.get('paths')[0]==='end') {
+        if(this.model.get('paths') && this.model.get('paths')[0]==='end') {
           this.parent.proceed('end');
         }else {
           if(this.$player) {

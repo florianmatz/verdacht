@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       publish: {
         files: [
           {
-            src: ['**', '!assets/less/**', '!assets/js/**', '!assets/libs/**'],
+            src: ['**', '!index.html', '!assets/less/**', '!assets/js/**', '!assets/libs/**'],
             dest: '../publish/',
             expand: true,
             cwd: '../source/',
@@ -53,6 +53,9 @@ module.exports = function(grunt) {
       publish: {
         files: {
           '../publish/assets/css/style.css': ['../publish/index.html','../publish/privacy.html']
+          },
+          options: {
+            force: true
           }
         }
     },
@@ -66,13 +69,12 @@ module.exports = function(grunt) {
     },
 
     autoprefixer: {
-
-      main: {
+      development: {
         options: {
           browsers: ['last 2 version']
         },
         src: '../source/assets/css/style.css'
-      }
+      },
     },
 
     requirejs: {
@@ -81,11 +83,19 @@ module.exports = function(grunt) {
           name: 'main',
           baseUrl: '../source/assets/js',
           mainConfigFile: '../source/assets/js/main.js',
-          out: '../publish/js/main.js',
-          include: ['../source/assets/libs/requirejs/require']
+          out: '../publish/assets/js/main.js',
+          include: ['../libs/requirejs/require', 'image']
         }
       }
-    }
+    },
+
+    processhtml: {
+        dist: {
+          files: {
+            '../publish/index.html': ['../source/index.html']
+          }
+        }
+      }
 
   });
 
@@ -98,10 +108,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-processhtml');
 
 
   // Default task.
   grunt.registerTask('default', 'clean');
-  grunt.registerTask('build', ['clean', 'copy', 'requirejs', 'uncss', 'cssmin']);
+  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml']);
 
 };

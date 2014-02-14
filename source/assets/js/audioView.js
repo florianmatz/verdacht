@@ -106,6 +106,7 @@ define([
       },
 
       totalReplay: function(evt) {
+        evt.preventDefault();
         this.currentChapter = this.bitmaskA = this.bitmaskB = 0;
         this.render();
       }
