@@ -43,7 +43,7 @@ define([
      */
     PageScroller.prototype.addListeners = function() {
 
-      this.$el.addClass('in');
+      this.$el.addClass('show');
       $('.loader-page').removeClass('show');
 
       var self = this;
@@ -85,11 +85,15 @@ define([
      * @param  {keyEvent} evt KeyEvent
      */
     PageScroller.prototype.onKeydown = function(evt) {
-      if(evt.which === 38 && this.$el.find('section.active').index() === 0) {
-        this.$logoFlag.removeClass('show');
-      }else if(evt.which === 40) {
-        this.$logoFlag.addClass('show');
+
+      if(!this.$body.hasClass('disabled-onepage-scroll')) {
+        if(evt.which === 38 && this.$el.find('section.active').index() === 0) {
+          this.$logoFlag.removeClass('show');
+        }else if(evt.which === 40) {
+          this.$logoFlag.addClass('show');
+        }
       }
+
     };
 
     /**

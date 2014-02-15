@@ -49,17 +49,6 @@ module.exports = function(grunt) {
       }
     },
 
-    uncss: {
-      publish: {
-        files: {
-          '../publish/assets/css/style.css': ['../publish/index.html','../publish/privacy.html']
-          },
-          options: {
-            force: true
-          }
-        }
-    },
-
     cssmin: {
       publish: {
         files: {
@@ -90,7 +79,7 @@ module.exports = function(grunt) {
     },
 
     processhtml: {
-        dist: {
+        publish: {
           files: {
             '../publish/index.html': ['../source/index.html']
           }
@@ -106,7 +95,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-processhtml');
 
