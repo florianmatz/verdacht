@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+  require('time-grunt')(grunt);
+
   // Project configuration.
   grunt.initConfig({
 
@@ -79,12 +81,25 @@ module.exports = function(grunt) {
     },
 
     processhtml: {
-        publish: {
-          files: {
-            '../publish/index.html': ['../source/index.html']
-          }
+      publish: {
+        files: {
+          '../publish/index.html': ['../source/index.html']
         }
       }
+    },
+
+    'ftp-deploy': {
+      publish: {
+        auth: {
+          host: 'v-erdacht.de',
+          port: 21,
+          authKey: 'verdacht'
+        },
+        src: '../publish/',
+        dest: '/',
+        exclusions: ['../publish/assets/sounds']
+      }
+    }
 
   });
 
@@ -97,10 +112,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-processhtml');
-
+  grunt.loadNpmTasks('grunt-ftp-deploy');
 
   // Default task.
   grunt.registerTask('default', 'clean');
-  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml']);
+  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'ftp-deploy']);
 
 };

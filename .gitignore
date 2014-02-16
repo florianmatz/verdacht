@@ -4,3 +4,4 @@
 publish
 
 node_modules
+/build/*.ftppass
