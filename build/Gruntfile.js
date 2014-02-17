@@ -99,6 +99,18 @@ module.exports = function(grunt) {
         dest: '/',
         exclusions: ['../publish/assets/sounds']
       }
+    },
+
+    compress: {
+      publish: {
+        options: {
+          mode: 'gzip'
+        },
+        expand: true,
+        cwd: '../publish/',
+        src: ['**/*.js', '**/*.html', '**/*.css'],
+        dest: '../publish/'
+      }
     }
 
   });
@@ -112,10 +124,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-processhtml');
+  grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-ftp-deploy');
 
   // Default task.
   grunt.registerTask('default', 'clean');
-  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'ftp-deploy']);
+  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'compress', 'ftp-deploy']);
 
 };

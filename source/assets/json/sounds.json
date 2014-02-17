@@ -19,7 +19,7 @@
         {
             "name": "03-park-2",
             "title": "Der Park",
-            "icon": "icon-steps",
+            "icon": "steps",
             "options": ["Weg zum Bahnhof fortsetzen", "Zum Entspannen in die Kirche"],
             "paths": ["04-strasse", "05-kirche"],
             "loop": "loop-park-1+2"
