@@ -233,3 +233,45 @@ hr {
 
 // Awwwards Badge
 @import "awwwards";
+
+.credits {
+    height: 400px;
+    overflow: hidden;
+
+
+    dl {
+        font-size: 18px;
+        transition: transform 15s linear;
+
+        &:hover {
+            transform: translate(0,-150%);
+        }
+
+        dt {
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+
+            @media ( min-width: @screen-desktop ) {
+                font-size: 25px;
+            }
+
+        }
+
+        strong {
+            margin-bottom: 2px;
+        }
+
+        em {
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        @media ( min-width: @screen-desktop ) {
+            font-size: 20px;
+        }
+
+    }
+
+}
+

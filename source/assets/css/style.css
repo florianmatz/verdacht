@@ -409,7 +409,7 @@ h6,
 .h5,
 .h6 {
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.1;
   color: inherit;
 }
@@ -2545,7 +2545,8 @@ you can use the generic selector below, but it's slower:
 .icon-stairs,
 .icon-mobile,
 .icon-rocket,
-.icon-contract {
+.icon-contract,
+.icon-android {
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -2648,6 +2649,10 @@ you can use the generic selector below, but it's slower:
 
 .icon-contract:before {
   content: "\e016";
+}
+
+.icon-android:before {
+  content: "\e017";
 }
 
 .loader {
@@ -3411,6 +3416,10 @@ section.needed-resize .container {
   margin-top: 15px;
 }
 
+#home .btn:first-child {
+  margin-right: 20px;
+}
+
 @media (min-width: 992px) {
   #home .btn {
     margin-top: 20px;
@@ -3788,6 +3797,11 @@ section.needed-resize .container {
   position: absolute;
   top: 40px;
   z-index: 9999;
+  opacity: 0;
+}
+
+#awwwards.show {
+  opacity: 1;
 }
 
 /* Left */
@@ -3812,11 +3826,7 @@ section.needed-resize .container {
 /* White */
 
 #awwwards.left.white a {
-  background-image: url('../img/awwwards_nominee_white_left.png');
-}
-
-#awwwards.right.white a {
-  background-image: url('../img/awwwards_nominee_white_right.png');
+  background-image: url('../img/awwwards_honorable_white_left.png');
 }
 
 /* MEDIA QUERIES */
@@ -3844,10 +3854,49 @@ section.needed-resize .container {
   /* White */
 
   #awwwards.left.white a {
-    background-image: url('../img/awwwards_nominee_white_left2x.png');
+    background-image: url('../img/awwwards_honorable_white_left2x.png');
   }
+}
 
-  #awwwards.right.white a {
-    background-image: url('../img/awwwards_nominee_white_right2x.png');
+.credits {
+  height: 400px;
+  overflow: hidden;
+}
+
+.credits dl {
+  font-size: 18px;
+  -webkit-transition: -webkit-transform 15s linear;
+  transition: transform 15s linear;
+}
+
+.credits dl:hover {
+  -webkit-transform: translate(0, -150%);
+  transform: translate(0, -150%);
+}
+
+.credits dl dt {
+  font-size: 20px;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 992px) {
+  .credits dl dt {
+    font-size: 25px;
+  }
+}
+
+.credits dl strong {
+  margin-bottom: 2px;
+}
+
+.credits dl em {
+  font-style: normal;
+  font-weight: 700;
+}
+
+@media (min-width: 992px) {
+  .credits dl {
+    font-size: 20px;
   }
 }
