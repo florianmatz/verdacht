@@ -171,4 +171,69 @@
 
     }
 
+    .credits {
+        height: 400px;
+        overflow: hidden;
+        display: none;
+
+
+        dl {
+            font-size: 18px;
+
+            &.animate {
+                animation: scroll-credits 40s 1 linear;
+                animation-delay: 1s;
+            }
+
+            dt {
+                font-size: 20px;
+                margin-top: 25px;
+                margin-bottom: 5px;
+
+                @media ( min-width: @screen-desktop ) {
+                    font-size: 25px;
+                }
+
+            }
+
+            strong {
+                margin-bottom: 2px;
+            }
+
+            em {
+                font-style: normal;
+                font-weight: 700;
+            }
+
+            @media ( min-width: @screen-desktop ) {
+                font-size: 20px;
+            }
+
+        }
+
+        .total-replay {
+            opacity: 0;
+            pointer-events: none;
+            position: relative;
+            top: 50%;
+            margin-top: -28px;
+
+
+            &.in {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+    }
+
+    @keyframes scroll-credits {
+        0% {
+            transform: translate(0,0);
+        }
+        100% {
+            transform: translate(0, -105%);
+        }
+    }
+
 }

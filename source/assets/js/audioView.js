@@ -20,11 +20,15 @@ define([
       el: $('#audio .sounds'),
 
       /**
+       * @property {jQuery} this.$credits The jQuery Container of the credits
+       */
+      $credits: $('.credits'),
+
+      /**
        * @property {Object} this.events The events binded to the view
        */
       events: {
-        'click .proceed'      : 'proceed',
-        'click .total-replay' : 'totalReplay'
+        'click .proceed'      : 'proceed'
       },
 
       /**
@@ -77,7 +81,7 @@ define([
               view  = new SoundView({
                 model: model,
                 player: this.player,
-                parent: item.paths && item.paths[0]==='end' ? this : null
+                parent: item.paths && item.paths[0]==='end' || item.end && item.end===true ? this : null
               });
 
           this.soundViews.push(view);
@@ -93,6 +97,9 @@ define([
        * @param {soundView} nextView The next chapter to be rendered
        */
       render: function(nextView) {
+
+        this.$el.show();
+        this.$credits.hide();
 
         if(nextView) {
 

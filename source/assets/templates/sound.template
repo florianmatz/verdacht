@@ -23,10 +23,12 @@
   <% }); } %>
 
   <li>
-    <% var totalReplay = (typeof end != 'undefined') %>
-    <a href="#" class="btn <% if(totalReplay){%>total-<%}%>replay">
-      <% if(totalReplay){ %>Hörspiel<% } %> <span class="icon-loop">Erneut anhören</span>
-    </a>
+    <% if(typeof end === 'undefined') { %>
+      <a href="#" class="btn replay">
+        <span class="icon-loop">Erneut anhören</span>
+      </a>
+    <% } %>
+
   </li>
 
 </ul>

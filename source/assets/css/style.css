@@ -3615,6 +3615,87 @@ section.needed-resize .container {
   padding: 10px 0;
 }
 
+#audio .credits {
+  height: 400px;
+  overflow: hidden;
+  display: none;
+}
+
+#audio .credits dl {
+  font-size: 18px;
+}
+
+#audio .credits dl.animate {
+  -webkit-animation: scroll-credits 40s 1 linear;
+  animation: scroll-credits 40s 1 linear;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+#audio .credits dl dt {
+  font-size: 20px;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 992px) {
+  #audio .credits dl dt {
+    font-size: 25px;
+  }
+}
+
+#audio .credits dl strong {
+  margin-bottom: 2px;
+}
+
+#audio .credits dl em {
+  font-style: normal;
+  font-weight: 700;
+}
+
+@media (min-width: 992px) {
+  #audio .credits dl {
+    font-size: 20px;
+  }
+}
+
+#audio .credits .total-replay {
+  opacity: 0;
+  pointer-events: none;
+  position: relative;
+  top: 50%;
+  margin-top: -28px;
+}
+
+#audio .credits .total-replay.in {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@-webkit-keyframes scroll-credits {
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, -105%);
+    transform: translate(0, -105%);
+  }
+}
+
+@keyframes scroll-credits {
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, -105%);
+    transform: translate(0, -105%);
+  }
+}
+
 #info li {
   margin-bottom: 8px;
 }
@@ -3800,7 +3881,7 @@ section.needed-resize .container {
   opacity: 0;
 }
 
-#awwwards.show {
+#awwwards.in {
   opacity: 1;
 }
 
@@ -3833,7 +3914,7 @@ section.needed-resize .container {
 
 /* Landscape phone to portrait tablet */
 
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   /* hidden */
 
   #awwwards {
@@ -3855,48 +3936,5 @@ section.needed-resize .container {
 
   #awwwards.left.white a {
     background-image: url('../img/awwwards_honorable_white_left2x.png');
-  }
-}
-
-.credits {
-  height: 400px;
-  overflow: hidden;
-}
-
-.credits dl {
-  font-size: 18px;
-  -webkit-transition: -webkit-transform 15s linear;
-  transition: transform 15s linear;
-}
-
-.credits dl:hover {
-  -webkit-transform: translate(0, -150%);
-  transform: translate(0, -150%);
-}
-
-.credits dl dt {
-  font-size: 20px;
-  margin-top: 25px;
-  margin-bottom: 5px;
-}
-
-@media (min-width: 992px) {
-  .credits dl dt {
-    font-size: 25px;
-  }
-}
-
-.credits dl strong {
-  margin-bottom: 2px;
-}
-
-.credits dl em {
-  font-style: normal;
-  font-weight: 700;
-}
-
-@media (min-width: 992px) {
-  .credits dl {
-    font-size: 20px;
   }
 }

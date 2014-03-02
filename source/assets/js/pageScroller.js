@@ -44,7 +44,7 @@ define([
      */
     PageScroller.prototype.addListeners = function() {
 
-      this.$ribbon.addClass('show');
+      this.$ribbon.addClass('in');
       this.$el.addClass('show');
       $('.loader-page').removeClass('show');
 

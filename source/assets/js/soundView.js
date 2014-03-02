@@ -100,7 +100,7 @@ define([
        */
       showDecision: function() {
 
-        // At the cellar, no decision neccessary, noch unelegant
+        // At the cellar, no decision neccessary
         if(this.model.get('paths') && this.model.get('paths')[0]==='end') {
           this.parent.proceed('end');
         }else {
@@ -206,22 +206,56 @@ define([
       },
 
       /**
+       * Stops the message
+       * @method stopMessage
+       */
+      stopMessage: function() {
+        if(!this.message) return;
+        this.message.pause();
+        this.message.currentTime = 0;
+      },
+
+      /**
        * Plays the ending of the audio drama which consists of two parts and depends
-       * on the places you have visited during the drama.
+       * on the places you have visited during the drama, and shows the credits
        * @method playEnd
        */
       playEnd: function() {
 
         this.$player.one('playbackEnd', $.proxy( function() {
 
-          var $h2 = this.$el.find('h2');
+          var $h2 = this.$el.find('h2'),
+              $credits = $('.credits'),
+              $list    = $credits.find('dl'),
+              $btn     = $credits.find('.total-replay'),
+              $sounds  = $('.sounds');
 
           $h2.find('span:nth-of-type(2)').text('Das Krankenhaus');
 
           this.$player.one('playbackEnd', $.proxy( function() {
-            this.showDecision();
+
             this.initMessage(this.outro);
             this.playMessage();
+
+            // Configure the total replay button
+            $btn.on('click', $.proxy(function(evt){
+              this.stopMessage();
+            }, this));
+
+            $btn.on('click', $.proxy(this.parent.totalReplay, this.parent));
+
+            // Show the credits
+            $sounds.css('display', 'none');
+            $credits
+              .show();
+            $list.addClass('animate');
+            $list.on(utils.prefixedAnimationEnd, function() {
+              $list.off(utils.prefixedAnimationEnd);
+              $list.hide();
+              $btn.addClass('in');
+            });
+
+
           }, this) );
 
           this.player.setFile(this.endingPartB);

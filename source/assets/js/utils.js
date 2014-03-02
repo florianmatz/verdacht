@@ -38,7 +38,8 @@ define([
          * The prefixed Transition-End Events
          * @type {String}
          */
-        prefixedTransitionEnd: 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend'
+        prefixedTransitionEnd: 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd MsTransitionEnd transitionend',
+        prefixedAnimationEnd:  'webkitAnimationEnd oanimationend oAnimationEnd msAnimationEnd MsAnimationEnd animationend'
 
     };
 
