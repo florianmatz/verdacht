@@ -176,10 +176,10 @@ define([
         this.initAudioListeners();
       }
 
-      if(this.sound.canPlayType("audio/mp3")) {
+      if(this.sound.canPlayType('audio/mp3')) {
          this.sound.src = this.filePath+this.file+'.mp3';
       }
-      else if(audio.canPlayType("audio/ogg")) {
+      else if(audio.canPlayType('audio/ogg')) {
         //audio.src = "/my-podcast.ogg";
       }
 
@@ -204,7 +204,6 @@ define([
       this.$sound.on('canplay', $.proxy( this.startPlayback, this ));
       this.$sound.on('timeupdate', $.proxy( this.updateTime, this ));
       this.$sound.on('waiting', $.proxy( this.onBuffering, this ));
-      this.$sound.on('stalled', function() {console.log('loaded data');});
       this.$sound.on('ended', $.proxy( this.onPlaybackEnd, this ));
     };
 
