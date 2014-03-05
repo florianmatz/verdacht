@@ -3792,6 +3792,12 @@ section.needed-resize .container {
   font-size: 18px;
 }
 
+@media (min-width: 992px) {
+  #contact {
+    font-size: 21px;
+  }
+}
+
 #contact h1 {
   margin-bottom: 30px;
 }
@@ -3807,12 +3813,6 @@ section.needed-resize .container {
   #contact h3 {
     font-size: 20px;
     margin-top: 20px;
-  }
-}
-
-@media (min-width: 992px) {
-  #contact {
-    font-size: 20px;
   }
 }
 
