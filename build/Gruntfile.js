@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
 
+  var bsTimestamp = new Date().getTime();
   require('time-grunt')(grunt);
 
   // Project configuration.
@@ -16,7 +17,6 @@ module.exports = function(grunt) {
 
     //kompiliert alle .less dateien aus angegebenem Verzeichnis ins .css dateien
     less : {
-
       development: {
         options: {
           paths: ['../source/assets/less', '../source/assets/libs/bootstrap/less']
@@ -102,15 +102,96 @@ module.exports = function(grunt) {
     },
 
     compress: {
-      publish: {
+      html: {
         options: {
           mode: 'gzip'
         },
         expand: true,
         cwd: '../publish/',
-        src: ['**/*.js', '**/*.html', '**/*.css'],
-        dest: '../publish/'
+        src: ['**/*.html'],
+        dest: '../publish/',
+        ext: '.gz.html'
+      },
+      css: {
+        options: {
+          mode: 'gzip'
+        },
+        expand: true,
+        cwd: '../publish/',
+        src: ['**/*.css'],
+        dest: '../publish/',
+        ext: '.gz.css'
+      },
+      js: {
+        options: {
+          mode: 'gzip'
+        },
+        expand: true,
+        cwd: '../publish/',
+        src: ['**/*.js'],
+        dest: '../publish/',
+        ext: '.gz.js'
       }
+    },
+
+    'cache-busting': {
+        requirejs: {
+            replace: ['../publish/index.html'],
+            replacement: 'main.js',
+            file: '../publish/assets/js/main.js',
+            cleanup: true
+        },
+        css: {
+            replace: ['../publish/index.html'],
+            replacement: 'style.css',
+            file: '../publish/assets/css/style.css',
+            cleanup: true 
+        }
+    },
+
+    imagemin: {                         
+      publish: {                        
+        files: [{
+          expand: true,                  
+          cwd: '../publish',                   
+          src: ['**/*.{png,jpg,gif}'],   
+          dest: '../publish'                  
+        }]
+      }
+    },
+
+    critical: {
+        test: {
+            options: {
+                base: './',
+                css: [
+                    'test/fixture/styles/main.css',
+                    'test/fixture/styles/bootstrap.css'
+                ],
+                width: 320,
+                height: 70
+            },
+            src: 'test/fixture/index.html',
+            dest: 'test/generated/index-critical.html'
+        }
+    },
+
+    connect: {
+      dev: {
+        options: {
+          port: 80,
+          base: '../source',
+          keepalive: true
+        }
+      },
+      publish: {
+        options: {
+          port: 8080,
+          base: '../publish',
+          keepalive: true
+        }
+      }
+
     }
 
   });
@@ -126,9 +207,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-processhtml');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-ftp-deploy');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-cache-busting');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-critical');
 
   // Default task.
   grunt.registerTask('default', 'clean');
-  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'compress', 'ftp-deploy']);
+  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'cache-busting', 'compress', 'imagemin']);
+  grunt.registerTask('deploy', ['build', 'ftp-deploy']);
 
 };

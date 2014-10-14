@@ -31,6 +31,8 @@ define([
        */
       this.$loader = $('.loader-bg');
 
+      this.bsTimestamp = '';
+
       this.load();
     };
 
@@ -47,7 +49,7 @@ define([
 
       $.each(this.$sections, function(index, item) {
         var $item = $(item),
-            path  = self.imgPath+'bg-'+$item.attr('id')+'-'+viewport+'.jpg',
+            path  = self.imgPath+'bg-'+$item.attr('id')+'-'+viewport+''+self.bsTimestamp+'.jpg',
             setImages = function() {
               $item.css('background-image', 'url('+path+')');
               itemsLoaded++;

@@ -4,19 +4,23 @@
   "description": "Website für das binaurale Hörspiel '(V)erdacht'",
   "homepage": "www.v-erdacht.de",
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-contrib-less": "~0.8.3",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-autoprefixer": "~0.5.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-cssmin": "~0.7.0",
-    "grunt-contrib-requirejs": "~0.4.1",
-    "grunt-processhtml": "~0.3.0",
-    "grunt-ftp-deploy": "~0.1.1",
-    "grunt-contrib-compress": "~0.6.1"
+    "grunt": "~0.4.5",
+    "grunt-autoprefixer": "~1.0.1",
+    "grunt-cache-busting": "0.0.10",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-compress": "~0.12.0",
+    "grunt-contrib-connect": "^0.8.0",
+    "grunt-contrib-copy": "~0.6.0",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-imagemin": "^0.8.1",
+    "grunt-contrib-less": "~0.11.4",
+    "grunt-contrib-requirejs": "~0.4.4",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-critical": "0.0.3",
+    "grunt-ftp-deploy": "~0.1.7",
+    "grunt-processhtml": "~0.3.3"
   },
   "dependencies": {
-    "time-grunt": "~0.2.9"
+    "time-grunt": "~1.0.0"
   }
 }

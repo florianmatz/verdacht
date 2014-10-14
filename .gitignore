@@ -5,3 +5,5 @@ publish
 
 node_modules
 /build/*.ftppass
+
+/source/assets/libs
