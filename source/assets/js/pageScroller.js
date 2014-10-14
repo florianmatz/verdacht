@@ -116,6 +116,7 @@ define([
      */
     PageScroller.prototype.watchResize = function() {
 
+
       var self         = this,
           winHeight    = this.$window.height(),
           neededResize = null;

@@ -98,6 +98,13 @@
         position: relative;
         display: block;
 
+        .js-disabled {
+            display: none;
+            .no-js & {
+                display: block;
+            }
+        }
+
         .hint, .countdown {
             display: block;
             position: relative;
@@ -120,6 +127,10 @@
 
             h3 {
                 line-height: 1.5;
+            }
+
+            .no-js & {
+                display: none;
             }
 
         }

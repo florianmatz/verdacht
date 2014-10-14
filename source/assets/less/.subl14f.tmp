@@ -21,7 +21,7 @@
 // Iconfont
 @import "iconfont.less";
 
-// Custom Font
+// Normal Font
 @import "custom-font.less";
 
 // Loader Animation
@@ -88,7 +88,7 @@ body {
     opacity: 0;
     transition: opacity .3s;
 
-    &.show, .no-js & {
+    &.show {
         opacity: 1;
     }
 

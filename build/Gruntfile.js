@@ -88,6 +88,39 @@ module.exports = function(grunt) {
       }
     },
 
+    'string-replace': {
+      timestamp: {
+        files: {
+          '../publish/index.html': '../publish/index.html',
+        },
+        options: {
+          replacements: [
+            {
+              pattern: 'data-bstimestamp=""',
+              replacement: 'data-bstimestamp="'+bsTimestamp+'"'
+            }
+          ]
+        }
+      },
+      fontpath: {
+        files: {
+          '../publish/index.html': '../publish/index.html',
+        },
+        options: {
+          replacements: [
+            {
+              pattern: /..\/fonts/g,
+              replacement: 'assets/fonts'
+            },
+            {
+              pattern: /..\/img/g,
+              replacement: 'assets/img'
+            }
+          ]
+        }
+      }
+    },
+
     'ftp-deploy': {
       publish: {
         auth: {
@@ -110,7 +143,7 @@ module.exports = function(grunt) {
         cwd: '../publish/',
         src: ['**/*.html'],
         dest: '../publish/',
-        ext: '.gz.html'
+        ext: '.gz.html',
       },
       css: {
         options: {
@@ -161,19 +194,18 @@ module.exports = function(grunt) {
     },
 
     critical: {
-        test: {
-            options: {
-                base: './',
-                css: [
-                    'test/fixture/styles/main.css',
-                    'test/fixture/styles/bootstrap.css'
-                ],
-                width: 320,
-                height: 70
-            },
-            src: 'test/fixture/index.html',
-            dest: 'test/generated/index-critical.html'
-        }
+      publish: {
+          options: {
+              base: './',
+              css: [
+                  '../publish/assets/css/style.css'
+              ],
+              width: 320,
+              height: 700
+          },
+          src: '../publish/index.html',
+          dest: '../publish/assets/css/critical.css'
+      }
     },
 
     connect: {
@@ -211,10 +243,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-cache-busting');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-critical');
+  grunt.loadNpmTasks('grunt-string-replace');
 
   // Default task.
   grunt.registerTask('default', 'clean');
-  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'cache-busting', 'compress', 'imagemin']);
+  // grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'string-replace:timestamp', 'cache-busting', 'compress', 'imagemin']);
+  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'string-replace:timestamp', 'critical', 'string-replace:fontpath', 'cache-busting', 'compress', 'imagemin']);
   grunt.registerTask('deploy', ['build', 'ftp-deploy']);
 
 };
