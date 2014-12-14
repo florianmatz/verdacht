@@ -130,6 +130,8 @@ define([
 
       });
 
+
+
       if(neededResize) {
         this.$el.responsive();
         this.$sections.addClass('needed-resize');

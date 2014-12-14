@@ -89,7 +89,7 @@ module.exports = function(grunt) {
     },
 
     'string-replace': {
-      timestamp: {
+      publish: {
         files: {
           '../publish/index.html': '../publish/index.html',
         },
@@ -98,23 +98,10 @@ module.exports = function(grunt) {
             {
               pattern: 'data-bstimestamp=""',
               replacement: 'data-bstimestamp="'+bsTimestamp+'"'
-            }
-          ]
-        }
-      },
-      fontpath: {
-        files: {
-          '../publish/index.html': '../publish/index.html',
-        },
-        options: {
-          replacements: [
-            {
-              pattern: /..\/fonts/g,
-              replacement: 'assets/fonts'
             },
             {
-              pattern: /..\/img/g,
-              replacement: 'assets/img'
+              pattern: 'js"></script>',
+              replacement: 'js" async></script>'
             }
           ]
         }
@@ -193,18 +180,17 @@ module.exports = function(grunt) {
       }
     },
 
-    critical: {
-      publish: {
-          options: {
-              base: './',
-              css: [
-                  '../publish/assets/css/style.css'
-              ],
-              width: 320,
-              height: 700
-          },
-          src: '../publish/index.html',
-          dest: '../publish/assets/css/critical.css'
+    htmlmin: {                                     
+      dist: {                                      
+        options: {                                 
+          removeComments: true,
+          collapseWhitespace: true,
+          minifyCSS: true,
+          minifyJS: true
+        },
+        files: {                                  
+          '../publish/index.html': '../publish/index.html',    
+        }
       }
     },
 
@@ -234,6 +220,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-processhtml');
@@ -242,13 +229,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-cache-busting');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-critical');
   grunt.loadNpmTasks('grunt-string-replace');
 
   // Default task.
   grunt.registerTask('default', 'clean');
-  // grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'string-replace:timestamp', 'cache-busting', 'compress', 'imagemin']);
-  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'string-replace:timestamp', 'critical', 'string-replace:fontpath', 'cache-busting', 'compress', 'imagemin']);
+  grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'string-replace','cache-busting', 'compress', 'imagemin']);
+  // grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'string-replace', 'htmlmin', 'cache-busting', 'compress', 'imagemin']);
   grunt.registerTask('deploy', ['build', 'ftp-deploy']);
 
 };
