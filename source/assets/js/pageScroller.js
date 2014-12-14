@@ -15,7 +15,6 @@ define([
       this.$html = $('html');
       this.$body = $('body');
       this.$sections = $('.main').find('section');
-      this.$ribbon = $('#awwwards');
       this.init();
     };
 
@@ -44,7 +43,6 @@ define([
      */
     PageScroller.prototype.addListeners = function() {
 
-      this.$ribbon.addClass('in');
       this.$el.addClass('show');
       $('.loader-page').removeClass('show');
 
@@ -129,7 +127,6 @@ define([
         }
 
       });
-
 
 
       if(neededResize) {

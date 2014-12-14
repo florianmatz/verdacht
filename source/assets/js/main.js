@@ -3,8 +3,8 @@ require.config({
     catchError: true,
 
     paths: {
-        jquery: '../libs/jquery/jquery',
-        onepageScroll: '../libs/onepage-scroll/jquery.onepage-scroll',
+        jquery: '../libs/jquery/dist/jquery',
+        onepageScroll: '../js/jquery.onepage-scroll',
         image: '../libs/requirejs-plugins/src/image',
         text: '../libs/requirejs-text/text',
         tpl: '../libs/requirejs-tpl/tpl',
