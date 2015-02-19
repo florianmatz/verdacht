@@ -165,31 +165,31 @@ module.exports = function(grunt) {
             replace: ['../publish/index.html'],
             replacement: 'style.css',
             file: '../publish/assets/css/style.css',
-            cleanup: true 
+            cleanup: true
         }
     },
 
-    imagemin: {                         
-      publish: {                        
+    imagemin: {
+      publish: {
         files: [{
-          expand: true,                  
-          cwd: '../publish',                   
-          src: ['**/*.{png,jpg,gif}'],   
-          dest: '../publish'                  
+          expand: true,
+          cwd: '../publish',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: '../publish'
         }]
       }
     },
 
-    htmlmin: {                                     
-      dist: {                                      
-        options: {                                 
+    htmlmin: {
+      dist: {
+        options: {
           removeComments: true,
           collapseWhitespace: true,
           minifyCSS: true,
           minifyJS: true
         },
-        files: {                                  
-          '../publish/index.html': '../publish/index.html',    
+        files: {
+          '../publish/index.html': '../publish/index.html',
         }
       }
     },
@@ -197,7 +197,7 @@ module.exports = function(grunt) {
     connect: {
       dev: {
         options: {
-          port: 80,
+          port: 70,
           base: '../source',
           keepalive: true
         }
