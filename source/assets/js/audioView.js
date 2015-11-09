@@ -9,7 +9,7 @@ define([
   ], function($, _, Backbone, soundView, json, utils, AudioPlayer){
 
     /**
-     * The main view for the audio drame
+     * The main view for the audio drama
      * @class AudioView
      */
     AudioView = Backbone.View.extend({

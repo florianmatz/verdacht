@@ -20,6 +20,14 @@ define([
             return check;
         },
 
+        isTouch: function() {
+            var check = false;
+            if (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)) {
+                check = true;
+            }
+            return check;
+        },
+
         /**
          * Gets the current viewport
          * @method  getViewport

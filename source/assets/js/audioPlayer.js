@@ -97,14 +97,15 @@ define([
       this.onMobile = utils.onMobile();
 
       /**
-      * @property {Boolean} this.touchActivated Flag, if playback was initialized by touch
+      * @property {Boolean} this.isTouch Flag, if playback is on touch device
       */
-      this.touchActivated = false;
+      this.onTouchDevice = utils.isTouch();
 
       /**
       * @property {Boolean} this.dragging Flag that indicates if a bar is dragged
       */
       this.dragging = '';
+
 
     };
 
@@ -167,17 +168,15 @@ define([
      */
     AudioPlayer.prototype.initAudio = function() {
 
-      this.togglePlaybackIcon('play');
-
       if(!this.sound) {
         this.sound = new Audio();
         this.$sound = $(this.sound);
-        this.sound.preload = 'metadata';
+        this.sound.preload = 'auto';
         this.initAudioListeners();
       }
 
       if(this.sound.canPlayType('audio/mp3')) {
-         this.sound.src = this.filePath+this.file+'.mp3';
+        this.sound.src = this.filePath+this.file+'.mp3';
       }
       else if(audio.canPlayType('audio/ogg')) {
         //audio.src = "/my-podcast.ogg";
@@ -187,10 +186,6 @@ define([
         this.setSavedVolume(sessionStorage.getItem('volume'));
       }
 
-      if(this.onMobile && !this.touchActivated) {
-        this.togglePlaybackIcon('pause');
-        this.touchActivated = true;
-      }
 
     };
 
@@ -201,7 +196,16 @@ define([
     AudioPlayer.prototype.initAudioListeners = function() {
       this.$sound.unbind();
       this.$sound.on('loadedmetadata', $.proxy( this.getTotalTime, this ));
-      this.$sound.on('canplay', $.proxy( this.startPlayback, this ));
+
+      if(this.onTouchDevice){
+        this.togglePlaybackIcon('pause');
+        this.$loader.removeClass('show');
+        this.$el.removeClass('loading');
+      }else {
+        this.togglePlaybackIcon('play');
+        this.$sound.on('canplay', $.proxy( this.startPlayback, this ));
+      }
+
       this.$sound.on('timeupdate', $.proxy( this.updateTime, this ));
       this.$sound.on('waiting', $.proxy( this.onBuffering, this ));
       this.$sound.on('ended', $.proxy( this.onPlaybackEnd, this ));
@@ -340,7 +344,14 @@ define([
      * @method onPlaybackEnd
      */
     AudioPlayer.prototype.onPlaybackEnd = function() {
-      this.togglePlaybackIcon('pause');
+
+      if(this.onTouchDevice) {
+        this.togglePlaybackIcon('pause');
+      }
+      else {
+        this.togglePlaybackIcon('play');
+      }
+
       this.$el.trigger('playbackEnd');
     };
 

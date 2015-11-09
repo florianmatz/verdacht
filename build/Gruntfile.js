@@ -221,7 +221,6 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', 'clean');
   grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'string-replace','cache-busting', 'compress', 'imagemin']);
-  // grunt.registerTask('build', ['clean', 'less', 'autoprefixer', 'copy', 'cssmin', 'requirejs', 'processhtml', 'string-replace', 'htmlmin', 'cache-busting', 'compress', 'imagemin']);
   grunt.registerTask('deploy', ['build', 'ftp-deploy']);
 
 };
